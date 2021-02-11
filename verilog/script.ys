@@ -1,0 +1,2 @@
+read_verilog /content/code.v
+show -format png -prefix /content/code
