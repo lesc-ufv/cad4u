@@ -9,8 +9,8 @@ from IPython.core.magic_arguments import argument, magic_arguments, parse_argstr
 from common import helper
 
 compiler = 'iverilog'
-yosys_run = '/content/blindsrc/verilog/yosys'
-script_run = '/content/blindsrc/verilog/script.ys'
+yosys_run = '/content/cad4u/verilog/yosys'
+script_run = '/content/cad4u/verilog/script.ys'
 ext = '.v'
 
 @magics_class
@@ -23,7 +23,7 @@ class VERILOGPlugin(Magics):
 
     def updateInstall(self):
         print("Installing iverilog. Please wait... ", end="")
-        args = ["sh", "/content/blindsrc/verilog/update_install.sh"]
+        args = ["sh", "/content/cad4u/verilog/update_install.sh"]
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
         output = output.decode('utf8')
@@ -116,7 +116,7 @@ class VERILOGPlugin(Magics):
         
         import sys
         sys.path.insert(0,'.')
-        from blindsrc.verilog.vcd_parser.vcd_plotter import VcdPlotter
+        from cad4u.verilog.vcd_parser.vcd_plotter import VcdPlotter
 
         sign_list = []
         time_begin = []

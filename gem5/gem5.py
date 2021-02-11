@@ -23,7 +23,7 @@ class Gem5Plugin(Magics):
     
     def updateInstall(self):
         print("Installing gem5 dependencies. Please wait... ", end="")
-        args = ["sh", "/content/blindsrc/valgrind/update_install.sh"]
+        args = ["sh", "/content/cad4u/valgrind/update_install.sh"]
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
         output = output.decode('utf8')
@@ -41,7 +41,7 @@ class Gem5Plugin(Magics):
 
     def run_gem5(self, file_path, args):
 
-        arguments = ["sh", "/content/blindsrc/gem5/execute.sh", args[0], file_path + ext]
+        arguments = ["sh", "/content/cad4u/gem5/execute.sh", args[0], file_path + ext]
         self.execution(arguments)
 
         if len(args) > 1:
@@ -51,7 +51,7 @@ class Gem5Plugin(Magics):
             else:
                 print("---------- Begin Simulation Statistics ----------")
                 for s in args[1:]:
-                    arguments = ["sh", "/content/blindsrc/gem5/statistic.sh", s]
+                    arguments = ["sh", "/content/cad4u/gem5/statistic.sh", s]
                     output = subprocess.check_output(arguments, stderr=subprocess.STDOUT)
                     output = output.decode('utf8')
                     self.print_out_gem5(output)
@@ -64,7 +64,7 @@ class Gem5Plugin(Magics):
             else:
                 print("---------- Begin Simulation Statistics ----------")
                 for s in data['stats']:
-                    arguments = ["sh", "/content/blindsrc/gem5/statistic.sh", s]
+                    arguments = ["sh", "/content/cad4u/gem5/statistic.sh", s]
                     output = subprocess.check_output(arguments, stderr=subprocess.STDOUT)
                     output = output.decode('utf8')
                     self.print_out_gem5(output)
@@ -83,12 +83,12 @@ class Gem5Plugin(Magics):
                 import sys
                 sys.path.insert(0,'.')
                 if bool_with_cache:
-                    from blindsrc.gem5.examples.two_level import cache_gem5
+                    from cad4u.gem5.examples.two_level import cache_gem5
                     cache_gem5(data)
                 else:
-                    from blindsrc.gem5.examples.simple import simple_gem5
+                    from cad4u.gem5.examples.simple import simple_gem5
                     simple_gem5(data)
-                arguments = ["sh", "/content/blindsrc/gem5/execute.sh", data['arch'], '/content/gem5_code.py']
+                arguments = ["sh", "/content/cad4u/gem5/execute.sh", data['arch'], '/content/gem5_code.py']
                 self.execution(arguments)
                 self.output_gem5(data)
                 #except:

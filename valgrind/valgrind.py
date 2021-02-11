@@ -22,7 +22,7 @@ class ValgrindPlugin(Magics):
     
     def updateInstall(self):
         print("Installing valgrind. Please wait... ", end="")
-        args = ["sh", "/content/blindsrc/valgrind/update_install.sh"]
+        args = ["sh", "/content/cad4u/valgrind/update_install.sh"]
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
         output = output.decode('utf8')
@@ -62,7 +62,7 @@ class ValgrindPlugin(Magics):
     def exec_range_cache(self, args, results):
 
         v = '--D1=%d,%d,%d' %(args[0]*1024,args[1],args[2])
-        args = ["sh", "/content/blindsrc/valgrind/execute.sh", v, '', '']
+        args = ["sh", "/content/cad4u/valgrind/execute.sh", v, '', '']
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
         output = output.decode('utf8')
@@ -78,7 +78,7 @@ class ValgrindPlugin(Magics):
                 break
             v[i] = args[i]
 
-        args = ["sh", "/content/blindsrc/valgrind/execute.sh", v[0], v[1], v[2]]
+        args = ["sh", "/content/cad4u/valgrind/execute.sh", v[0], v[1], v[2]]
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
         output = output.decode('utf8')

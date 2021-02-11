@@ -53,7 +53,7 @@ class NVCCPlugin(Magics):
             for f in flags:
                 flag += " -m " + f
 
-            args = ["sh", "/content/blindsrc/nvcc/metric.sh", flag]
+            args = ["sh", "/content/cad4u/nvcc/metric.sh", flag]
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
         output = output.decode('utf8')

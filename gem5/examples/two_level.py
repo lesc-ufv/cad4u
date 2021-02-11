@@ -8,10 +8,10 @@ def cache_gem5(data):
     s += "from m5.objects import *\n"   
 
     # import the caches which we made
-    s += "from blindsrc.gem5.examples.caches import *\n"
+    s += "from cad4u.gem5.examples.caches import *\n"
 
     # import the SimpleOpts module
-    s += "from blindsrc.gem5.examples import SimpleOpts\n"
+    s += "from cad4u.gem5.examples import SimpleOpts\n"
 
     # Set the usage message to display
     #s += "SimpleOpts.set_usage(\"usage: %prog [options] <binary to execute>\")\n"

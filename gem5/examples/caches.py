@@ -41,7 +41,7 @@ from m5.objects import Cache
 # Add the common scripts to our path
 m5.util.addToPath('../../')
 
-from blindsrc.gem5.examples import SimpleOpts
+from cad4u.gem5.examples import SimpleOpts
 
 # Some specific options for caches
 # For all options see src/mem/cache/BaseCache.py
