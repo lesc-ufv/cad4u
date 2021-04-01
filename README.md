@@ -6,7 +6,7 @@ Bibtex:
 
 ```
 @inproceedings{canesche2020cad4u,
-  title={Mind the Gap: Bridging Verilog and Computer Architecture},
+  title={Google Colab CAD4U: Hands-on Cloud Laboratories for Digital Design},
   author={Canesche, Michael and Braganca, Lucas and Neto, Omar Paranaiba Vilela and Nacif, Jose A and Ferreira, Ricardo},
   booktitle={2021 IEEE International Symposium on Circuits and Systems (ISCAS)},
   pages={1--5},
