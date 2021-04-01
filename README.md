@@ -5,7 +5,7 @@ Google Colab is a cloud Jupyter notebook widespread used to teach machine learni
 Bibtex:
 
 ```
-@inproceedings{canesche2020cad4u,
+@inproceedings{canesche2021cad4u,
   title={Google Colab CAD4U: Hands-on Cloud Laboratories for Digital Design},
   author={Canesche, Michael and Braganca, Lucas and Neto, Omar Paranaiba Vilela and Nacif, Jose A and Ferreira, Ricardo},
   booktitle={2021 IEEE International Symposium on Circuits and Systems (ISCAS)},
