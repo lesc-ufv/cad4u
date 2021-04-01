@@ -20,7 +20,7 @@ Bibtex:
 | Colab Example | Resume |
 |---|---|
 | [Logic Synthesis](https://colab.research.google.com/drive/17JJO_xieu6KViiwOqkfQICSzPm80mfSf) | This lab is based PyEDA library |
-| [Verilog](https://colab.research.google.com/drive/1YOoWP8cBFKRnHSKQNgTaT33fAZWDIlCe) | text2 | 
+| [Verilog](https://colab.research.google.com/drive/1YOoWP8cBFKRnHSKQNgTaT33fAZWDIlCe) | This lab will illustrate three Colab extensions for verilog: %%verilog, %%print_verilog, %%waveform | 
 | [MIPS pipeline in Verilog](https://colab.research.google.com/drive/1rtNH9j4fwL4v89aNX6BC1G5nE6R0nfDR)| text3 |
 | [GPU](https://colab.research.google.com/drive/1CQWSBJFagPQ1dsEhA-y-QkGWEMIAIaeK) | text4 |
 | [Valgrind](https://colab.research.google.com/drive/1ZBwjTCMNwEB219X9odyXwxcbW4gZYAz1) | text5 |
