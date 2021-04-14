@@ -135,7 +135,8 @@ class VERILOGPlugin(Magics):
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
             else:
-                exec(l.replace('=', '+='))
+                #exec(l.replace('=', '+='))
+                exec(l)
 
         #print(op_dict, sign_list, time_begin,time_end, base)
         vcd_plt = VcdPlotter('/content/%s'%name)
