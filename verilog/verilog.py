@@ -131,7 +131,7 @@ class VERILOGPlugin(Magics):
             if 'op_dict' not in l:
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
-            elif 'sign_list' not in l or :
+            elif 'sign_list' not in l:
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
             else:
