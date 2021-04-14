@@ -15,7 +15,7 @@ Bibtex:
 }
 ```
 
-# Colabs
+# Colabs:
 
 | Colab Example | Resume |
 |---|---|
