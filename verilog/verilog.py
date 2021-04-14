@@ -106,7 +106,7 @@ class VERILOGPlugin(Magics):
         args = line.split()
 
         if len(args) > 0:
-            name = args[0]
+            name = args[0]s = l.replace('=', '+=[') + ']'
             if '.vcd' not in name:
                 name += '.vcd'
         else:
@@ -128,7 +128,10 @@ class VERILOGPlugin(Magics):
             l = l.split("#")[0]
             if l == '':
                 continue
-            if 'sign_list' not in l or 'op_dict' not in l:
+            if 'op_dict' not in l:
+                s = l.replace('=', '+=[') + ']'
+                exec(s)
+            elif 'sign_list' not in l or :
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
             else:
