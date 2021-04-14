@@ -106,7 +106,7 @@ class VERILOGPlugin(Magics):
         args = line.split()
 
         if len(args) > 0:
-            name = args[0]s = l.replace('=', '+=[') + ']'
+            name = args[0]
             if '.vcd' not in name:
                 name += '.vcd'
         else:
@@ -137,5 +137,6 @@ class VERILOGPlugin(Magics):
             else:
                 exec(l.replace('=', '+='))
 
-        vcd_plt = VcdPlotter('/content/%s'%name)
-        vcd_plt.show(op_dict, sign_list, time_begin[0], time_end[0], base[0])
+        print(op_dict, sign_list, time_begin,time_end, base)
+        #vcd_plt = VcdPlotter('/content/%s'%name)
+        #vcd_plt.show(op_dict, sign_list, time_begin[0], time_end[0], base[0])
