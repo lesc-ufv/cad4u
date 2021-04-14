@@ -208,8 +208,8 @@ class VcdPlotter():
         plt.savefig(filename)
 
 # Just for code's tests
-m = VcdPlotter('out.vcd')
-m.show([{'0': 'T', '1': 'd'}, {'0': 'T', '1': ''}],
-      ['main.clk,r[0]', 'main.res', 'main.CPU.Fetch.pc', 'main.CPU.data1',
-      'main.CPU.data2', 'main.CPU.aluout', 'main.CPU.writedata',
-      'main.CPU.inst,hex'], 0, 22, 'dec')
+#m = VcdPlotter('out.vcd')
+#m.show([{'0': 'T', '1': 'd'}, {'0': 'T', '1': ''}],
+#      ['main.clk,r[0]', 'main.res', 'main.CPU.Fetch.pc', 'main.CPU.data1',
+#      'main.CPU.data2', 'main.CPU.aluout', 'main.CPU.writedata',
+#      'main.CPU.inst,hex'], 0, 22, 'dec')
