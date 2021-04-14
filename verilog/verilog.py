@@ -134,5 +134,5 @@ class VERILOGPlugin(Magics):
             else:
                 exec(l.replace('=', '+='))
 
-        vcd_plt  = VcdPlotter('/content/%s'%name)
+        vcd_plt = VcdPlotter('/content/%s'%name)
         vcd_plt.show(op_dict, sign_list, time_begin[0], time_end[0], base[0])
