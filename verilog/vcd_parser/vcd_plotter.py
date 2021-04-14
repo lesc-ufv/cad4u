@@ -18,7 +18,7 @@ class VcdPlotter():
     def show(self, op_dict, signals_list: [str], start_time: int,
              stop_time: int, base: str):
         #print(op_dict, signals_list)
-        self.plot(op_dict, signals_list, start_time, stop_time, base)
+        self.plot(op_dict[0], signals_list[0], start_time, stop_time, base)
         plt.show()
 
     def counter(self, value, size_x, j, data):
@@ -35,7 +35,7 @@ class VcdPlotter():
     def plot(self, op_dict, signals_list: [str], start_time: int,
              stop_time: int, base: str):
         data = {}
-        for sig in signals_list[0]:
+        for sig in signals_list:
             s = sig.split(',')
             id = self.__signal_store.name_id_map[s[0]]
             raw = self.__signal_store.signals[id].get_values(
@@ -162,8 +162,8 @@ class VcdPlotter():
                     aux = aux.replace('r', '')
                     aux = aux.replace('[', '')
                     aux = aux.replace(']', '')
-                    data[i] = op_dict[int(aux)][str(int(data[i],2))]
-                    #data[i] = op_dict[int(aux)][str(int(data[i]))]
+                    #data[i] = op_dict[int(aux)][str(int(data[i],2))]
+                    data[i] = op_dict[int(aux)][str(int(data[i]))]
                 else:
                     data[i] = 'd\'' + data[i]
             if base == 'dec':
