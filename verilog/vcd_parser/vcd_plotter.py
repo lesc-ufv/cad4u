@@ -34,8 +34,8 @@ class VcdPlotter():
     def plot(self, op_dict, signals_list: [str], start_time: int,
              stop_time: int, base: str):
         data = {}
-        for s in signals_list:
-            s = s.split(',')
+        for sig in signals_list:
+            s = sig.split(',')
             id = self.__signal_store.name_id_map[s[0]]
             raw = self.__signal_store.signals[id].get_values(
                 self.__signal_store.get_max_time_stamp())
@@ -207,9 +207,9 @@ class VcdPlotter():
         self.plot(signals_list, start_time, stop_time, base)
         plt.savefig(filename)
 
-# Justo for code's tests
-# m = VcdPlotter('out.vcd')
-# m.show([{'0': 'T', '1': 'd'}, {'0': 'T', '1': ''}],
-#       ['main.clk,r[0]', 'main.res', 'main.CPU.Fetch.pc', 'main.CPU.data1',
-#       'main.CPU.data2', 'main.CPU.aluout', 'main.CPU.writedata',
-#       'main.CPU.inst,hex'], 0, 22, 'dec')
+# Just for code's tests
+m = VcdPlotter('out.vcd')
+m.show([{'0': 'T', '1': 'd'}, {'0': 'T', '1': ''}],
+      ['main.clk,r[0]', 'main.res', 'main.CPU.Fetch.pc', 'main.CPU.data1',
+      'main.CPU.data2', 'main.CPU.aluout', 'main.CPU.writedata',
+      'main.CPU.inst,hex'], 0, 22, 'dec')
