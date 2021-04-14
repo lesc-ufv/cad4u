@@ -7,7 +7,7 @@ from codecs import decode
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from vcd_parser import VcdParser
+from cad4u.verilog.vcd_parser.vcd_parser import VcdParser
 
 
 class VcdPlotter():
