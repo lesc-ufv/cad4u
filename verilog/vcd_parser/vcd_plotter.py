@@ -17,7 +17,7 @@ class VcdPlotter():
 
     def show(self, op_dict, signals_list: [str], start_time: int,
              stop_time: int, base: str):
-        print(op_dict, signals_list, start_time, stop_time, base):
+        print(op_dict, signals_list, start_time, stop_time, base)
         #self.plot(op_dict, signals_list, start_time, stop_time, base)
         #plt.show()
 
