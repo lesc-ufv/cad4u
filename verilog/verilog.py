@@ -118,6 +118,7 @@ class VERILOGPlugin(Magics):
         sys.path.insert(0,'.')
         from cad4u.verilog.vcd_parser.vcd_plotter import VcdPlotter
 
+        op_dict = []
         sign_list = []
         time_begin = []
         time_end = []
@@ -127,11 +128,11 @@ class VERILOGPlugin(Magics):
             l = l.split("#")[0]
             if l == '':
                 continue
-            if 'sign_list' not in l:
+            if 'sign_list' not in l or 'op_dict' not in l:
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
             else:
                 exec(l.replace('=', '+='))
 
         vcd_plt  = VcdPlotter('/content/%s'%name)
-        vcd_plt.show(sign_list, time_begin[0], time_end[0], base[0])
+        vcd_plt.show(op_dict, sign_list, time_begin[0], time_end[0], base[0])
