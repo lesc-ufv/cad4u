@@ -18,7 +18,7 @@ class VcdPlotter():
     def show(self, op_dict, signals_list: [str], start_time: int,
              stop_time: int, base: str):
         #print(op_dict, signals_list)
-        self.plot(op_dict[0], signals_list[0], start_time, stop_time, base)
+        self.plot(op_dict, signals_list, start_time, stop_time, base)
         plt.show()
 
     def counter(self, value, size_x, j, data):
