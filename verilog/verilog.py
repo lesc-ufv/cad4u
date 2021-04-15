@@ -140,7 +140,7 @@ class VERILOGPlugin(Magics):
                 exec(l.replace('=', '+='))
                 #exec(l)
         if flag_op_dict == False:
-            op_dict = [[{}]]
+            op_dict = [[{'0':'??'}]]
             
         #print(op_dict, sign_list, time_begin,time_end, base)
         vcd_plt = VcdPlotter('/content/%s'%name)
