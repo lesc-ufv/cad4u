@@ -17,7 +17,6 @@ class VcdPlotter():
 
     def show(self, op_dict, signals_list: [str], start_time: int,
              stop_time: int, base: str):
-        #print(op_dict, signals_list)
         self.plot(op_dict, signals_list, start_time, stop_time, base)
         plt.show()
 
@@ -163,7 +162,10 @@ class VcdPlotter():
                     aux = aux.replace('[', '')
                     aux = aux.replace(']', '')
                     #data[i] = op_dict[int(aux)][str(int(data[i],2))]
-                    data[i] = op_dict[int(aux)][str(int(data[i]))]
+                    if str(int(data[i])) in op_dict[int(aux)]:
+                        data[i] = op_dict[int(aux)][str(int(data[i]))]
+                    else:
+                        data[i] = '??'
                 else:
                     data[i] = 'd\'' + data[i]
             if base == 'dec':
