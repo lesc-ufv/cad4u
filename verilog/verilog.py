@@ -129,20 +129,15 @@ class VERILOGPlugin(Magics):
             l = l.split("#")[0]
             if l == '':
                 continue
-            if 'op_dict' not in l:
-                s = l.replace('=', '+=[') + ']'
-                exec(s)
-            elif 'sign_list' not in l:
+            if 'sign_list' not in l and 'op_dict' not in l:
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
             else:
                 if 'op_dict' in l:
                     flag_op_dict = True
                 exec(l.replace('=', '+='))
-                #exec(l)
         if flag_op_dict == False:
             op_dict = [[{}]]
-            #exec('[{"0":"??"}]'.replace('=', '+='))
-        #print(op_dict, sign_list, time_begin,time_end, base)
+            
         vcd_plt = VcdPlotter('/content/%s'%name)
         vcd_plt.show(op_dict, sign_list, time_begin[0], time_end[0], base[0])
