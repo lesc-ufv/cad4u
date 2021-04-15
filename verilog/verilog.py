@@ -123,6 +123,7 @@ class VERILOGPlugin(Magics):
         time_begin = []
         time_end = []
         base = []
+        flag_op_dict = False
 
         for l in cell.strip().split("\n"):
             l = l.split("#")[0]
@@ -131,13 +132,16 @@ class VERILOGPlugin(Magics):
             if 'op_dict' not in l:
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
+                flag_op_dict = True
             elif 'sign_list' not in l:
                 s = l.replace('=', '+=[') + ']'
                 exec(s)
             else:
                 exec(l.replace('=', '+='))
                 #exec(l)
-
+        if flag_op_dict == False:
+            op_dict = [[{}]]
+            
         #print(op_dict, sign_list, time_begin,time_end, base)
         vcd_plt = VcdPlotter('/content/%s'%name)
         vcd_plt.show(op_dict, sign_list, time_begin[0], time_end[0], base[0])
