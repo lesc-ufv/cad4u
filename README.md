@@ -21,7 +21,7 @@ Bibtex:
 |---|---|
 | [Logic Synthesis](https://colab.research.google.com/drive/17JJO_xieu6KViiwOqkfQICSzPm80mfSf) | This lab is based PyEDA library |
 | [Verilog](https://colab.research.google.com/drive/1YOoWP8cBFKRnHSKQNgTaT33fAZWDIlCe) | This lab will illustrate three Colab extensions for verilog: %%verilog, %%print_verilog, %%waveform | 
-| [MIPS pipeline in Verilog](https://colab.research.google.com/drive/1rtNH9j4fwL4v89aNX6BC1G5nE6R0nfDR)| text3 |
-| [GPU](https://colab.research.google.com/drive/1CQWSBJFagPQ1dsEhA-y-QkGWEMIAIaeK) | text4 |
-| [Valgrind](https://colab.research.google.com/drive/1ZBwjTCMNwEB219X9odyXwxcbW4gZYAz1) | text5 |
-| [Gem5](https://colab.research.google.com/drive/1zHiITe3WBPKBc8IacNyjLoOn47imAaYx) | Text6 |
+| [MIPS pipeline in Verilog](https://colab.research.google.com/drive/1rtNH9j4fwL4v89aNX6BC1G5nE6R0nfDR)| This lab shows an example of a CPU five-stage MIPS processor, including Hazard and Forward detection units. |
+| [GPU](https://colab.research.google.com/drive/1CQWSBJFagPQ1dsEhA-y-QkGWEMIAIaeK) | This lab presents three extensions to compile & execute GPU CUDA code |
+| [Valgrind](https://colab.research.google.com/drive/1ZBwjTCMNwEB219X9odyXwxcbW4gZYAz1) | This lab presents Colab extentions to use the Valgrind Cache Simulator. |
+| [Gem5](https://colab.research.google.com/drive/1zHiITe3WBPKBc8IacNyjLoOn47imAaYx) | This lab shows an extension for the Gem5 simulator framework. |
