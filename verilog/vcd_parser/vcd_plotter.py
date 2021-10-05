@@ -213,7 +213,7 @@ class VcdPlotter():
 
     def return_show(self, op_dict, signals_list: [str], start_time: int, stop_time: int, base: str):
         self.plot(op_dict, signals_list, start_time, stop_time, base)
-      	return plt
+        return plt
 
 # Just for code's tests
 #m = VcdPlotter('out.vcd')
