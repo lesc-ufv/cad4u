@@ -206,9 +206,9 @@ class VcdPlotter():
         for s in self.__signal_store.signals:
             print(self.__signal_store.signals[s])
 
-    def save_figure(self, filename: str, signals_list: [str], start_time: int,
+    def save_figure(self, op_dict, filename: str, signals_list: [str], start_time: int,
                     stop_time: int, base: str):
-        self.plot(signals_list, start_time, stop_time, base)
+        self.plot(op_dict,signals_list, start_time, stop_time, base)
         plt.savefig(filename)
 
     def return_show(self, op_dict, signals_list: [str], start_time: int, stop_time: int, base: str):
