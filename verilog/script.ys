@@ -1,2 +1,3 @@
 read_verilog /content/code.v
-show -format png -prefix /content/code
+prep -flatten
+write_json output.json

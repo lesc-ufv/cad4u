@@ -9,8 +9,9 @@ from IPython.core.magic_arguments import argument, magic_arguments, parse_argstr
 from common import helper
 
 compiler = 'iverilog'
-yosys_run = '/content/cad4u/verilog/yosys'
 script_run = '/content/cad4u/verilog/script.ys'
+netlistsvg_run = '/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js'
+
 ext = '.v'
 
 @magics_class
@@ -22,7 +23,7 @@ class VERILOGPlugin(Magics):
         self.already_install = False
 
     def updateInstall(self):
-        print("Installing iverilog. Please wait... ", end="")
+        print("Installing dependencies. Please wait... ", end="")
         args = ["sh", "/content/cad4u/verilog/update_install.sh"]
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
@@ -50,15 +51,23 @@ class VERILOGPlugin(Magics):
             
         helper.print_out(output)
     
+    def process(self, args, out=False):
+        output = subprocess.check_output(args, stderr=subprocess.STDOUT).decode('utf8')
+        if (out):
+            helper.print_out(output)
+    
     def run_yosys(self, file_path):
-        args = [yosys_run, "-Q", "-T", "-q", "-s", script_run]
+        args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
+        self.process(args)
 
-        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
-        output = output.decode('utf8')
-        helper.print_out(output)
+        args = [netlistsvg_run, 'output.json']
+        self.process(args)
 
-        # Printer dot
-        display(Image(filename="/content/code.png"))
+        args = ['cairosvg', 'out.svg', '-o out.png']
+        self.process(args)
+
+        # Print image
+        display(Image(filename="/content/out.png"))
 
     @cell_magic
     def verilog(self, line, cell):

@@ -1,2 +1,2 @@
 apt update
-apt install iverilog -y
+apt install iverilog python3-cairosvg yosys -y
