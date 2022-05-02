@@ -63,12 +63,12 @@ class VERILOGPlugin(Magics):
         args = [netlistsvg_run, 'output.json']
         self.process(args)
 
-        args = ['cairosvg', 'out.svg', '-o code.png']
+        args = ['cairosvg', 'out.svg', '-o code.pdf']
         self.process(args)
 
         # Print image
         #display(Image(filename="/content/code.png"))
-        display(Image("/content/code.png"))
+        display(Image("/content/code.pdf"))
 
     @cell_magic
     def verilog(self, line, cell):
