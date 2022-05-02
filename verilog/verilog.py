@@ -11,6 +11,7 @@ from common import helper
 compiler = 'iverilog'
 script_run = '/content/cad4u/verilog/script.ys'
 netlistsvg_run = '/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js'
+SKIN_PATH='/content/cad4u/verilog/netlistsvg/lib/'
 
 ext = '.v'
 
@@ -60,7 +61,7 @@ class VERILOGPlugin(Magics):
         args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
         self.process(args)
 
-        args = [netlistsvg_run, 'output.json']
+        args = [netlistsvg_run, '-o output.json', '--skin '+SKIN_PATH+'default.svg']
         self.process(args)
 
         args = ['cairosvg', 'out.svg', '-o code.pdf']
