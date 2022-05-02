@@ -67,7 +67,8 @@ class VERILOGPlugin(Magics):
         self.process(args)
 
         # Print image
-        display(Image(filename="/content/code.png"))
+        #display(Image(filename="/content/code.png"))
+        display(Image("/content/code.png"))
 
     @cell_magic
     def verilog(self, line, cell):
