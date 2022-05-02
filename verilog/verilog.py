@@ -3,7 +3,7 @@ import subprocess
 import tempfile
 import uuid
 import graphviz
-from IPython.display import display, Image, SVG, PNG
+from IPython.display import display, Image, SVG
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
@@ -67,7 +67,7 @@ class VERILOGPlugin(Magics):
         self.process(args)
 
         # Print image
-        display(PNG('/content/out.svg'))
+        display(SVG('/content/out.svg'))
 
     @cell_magic
     def verilog(self, line, cell):
