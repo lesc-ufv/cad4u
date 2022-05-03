@@ -61,7 +61,7 @@ class VERILOGPlugin(Magics):
         if flag == "":
             args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
         else:
-            args = ['yosys', '-p \"prep '+flag+'; write_json output.json\"']
+            args = ['yosys', '-p \"prep '+flag+'; write_json output.json\"', '/content/code.v']
         self.process(args)
 
         args = [netlistsvg_run, 'output.json', '--skin '+SKIN_PATH+'default.svg']
