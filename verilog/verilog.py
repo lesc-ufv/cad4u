@@ -10,6 +10,7 @@ from common import helper
 
 compiler = 'iverilog'
 script_run = '/content/cad4u/verilog/script.ys'
+script_yosys = '/content/cad4u/verilog/yosys_command.sh'
 netlistsvg_run = '/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js'
 SKIN_PATH='/content/cad4u/verilog/netlistsvg/lib/'
 
@@ -61,7 +62,7 @@ class VERILOGPlugin(Magics):
         if flag == "":
             args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
         else:
-            args = ['yosys', '-p \"prep '+flag+'; write_json output.json\"', '/content/code.v']
+            args = [script_yosys, flag]
         self.process(args)
 
         args = [netlistsvg_run, 'output.json', '--skin '+SKIN_PATH+'default.svg']
