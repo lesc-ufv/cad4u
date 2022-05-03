@@ -57,8 +57,11 @@ class VERILOGPlugin(Magics):
         if (out):
             helper.print_out(output)
     
-    def run_yosys(self, file_path):
-        args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
+    def run_yosys(self, file_path, flag=""):
+        if flag == "":
+            args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
+        else:
+            args = ['yosys', '-p \"prep '+flag+'; write_json output.json\"']
         self.process(args)
 
         args = [netlistsvg_run, 'output.json', '--skin '+SKIN_PATH+'default.svg']
@@ -96,13 +99,14 @@ class VERILOGPlugin(Magics):
             self.already_install = True
             self.updateInstall()
 
-        args = line.split()
+        if "-top" not in line: 
+            line = ""
 
         file_path = os.path.join('/content/code')
         with open(file_path + ext, "w") as f:
             f.write(cell)
         try:
-            self.run_yosys(file_path)
+            self.run_yosys(file_path, line)
         except subprocess.CalledProcessError as e:
             helper.print_out(e.output.decode("utf8"))
     
