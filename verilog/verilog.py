@@ -52,12 +52,12 @@ class VERILOGPlugin(Magics):
     
     def run_yosys(self, file_path, flag=[]):
         if (len(flag) > 0):
-            args = ['yosys', '-p \"write_json out.json\"']
+            args = ['yosys', '-p \"write_json output.json\"']
         else:
             args = ['yosys', "-Q", "-T", "-q", "-s", script_run]  
         self.process(args)
 
-        args = [netlistsvg_run, '-o output.json', '--skin '+SKIN_PATH+'default.svg']
+        args = [netlistsvg_run, '-o output.json']
         self.process(args)
 
         args = ['cairosvg', 'out.svg', '-o code.pdf']
