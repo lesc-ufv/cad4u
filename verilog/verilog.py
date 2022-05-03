@@ -51,7 +51,7 @@ class VERILOGPlugin(Magics):
         self.process(args, True)
     
     def run_yosys(self, file_path, flag=""):
-        if (flag == "")
+        if (flag == ""):
             args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
         else:
             args = ['yosys', '-p \"write_json out.json\"']
