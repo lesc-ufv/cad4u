@@ -1,4 +1,3 @@
-from concurrent.futures import process
 import os
 import subprocess
 import tempfile
@@ -24,35 +23,42 @@ class VERILOGPlugin(Magics):
         self.argparser = helper.get_argparser()
         self.already_install = False
 
-    def process(self, args, out=False):
-        output = subprocess.check_output(args, stderr=subprocess.STDOUT).decode('utf8')
-        if (out):
-            helper.print_out(output)
-
     def updateInstall(self):
         print("Installing dependencies. Please wait... ", end="")
         args = ["sh", "/content/cad4u/verilog/update_install.sh"]
 
-        self.process(args)
+        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
+        output = output.decode('utf8')
+        #helper.print_out(output)
         print("done!")
 
     @staticmethod
     def compile(file_path, flags):
         args = [compiler, file_path + ext, "-o", file_path + ".out"]
+
         # adding flags: -O3, -unroll-loops, ...
         for flag in flags:
             if flag == "<":
                 break
             args.append(flag)
+        
         subprocess.check_output(args, stderr=subprocess.STDOUT)
 
     def run_verilog(self, file_path):
         args = [file_path + ".out"]
-        self.process(args, True)
+
+        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
+        output = output.decode('utf8')
+            
+        helper.print_out(output)
+    
+    def process(self, args, out=False):
+        output = subprocess.check_output(args, stderr=subprocess.STDOUT).decode('utf8')
+        if (out):
+            helper.print_out(output)
     
     def run_yosys(self, file_path):
-        
-        args = ['yosys', "-Q", "-T", "-q", "-s", script_run]  
+        args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
         self.process(args)
 
         args = [netlistsvg_run, '-o output.json', '--skin '+SKIN_PATH+'default.svg']
@@ -91,7 +97,6 @@ class VERILOGPlugin(Magics):
             self.updateInstall()
 
         args = line.split()
-        print(args)
 
         file_path = os.path.join('/content/code')
         with open(file_path + ext, "w") as f:
