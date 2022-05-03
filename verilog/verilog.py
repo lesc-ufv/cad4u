@@ -61,7 +61,7 @@ class VERILOGPlugin(Magics):
         args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
         self.process(args)
 
-        args = [netlistsvg_run, 'output.json', '-o out.svg', '--skin '+SKIN_PATH+'default.svg']
+        args = [netlistsvg_run, 'output.json', '--skin '+SKIN_PATH+'default.svg']
         self.process(args)
 
         args = ['cairosvg', 'out.svg', '-o code.pdf']
