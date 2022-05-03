@@ -52,7 +52,7 @@ class VERILOGPlugin(Magics):
     
     def run_yosys(self, file_path):
         #args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
-        args = ['yosys', '-p \"prep -top my_top_module; write_json out.json\"']
+        args = ['yosys', '-p \"write_json out.json\"']
         self.process(args)
 
         args = [netlistsvg_run, '-o output.json', '--skin '+SKIN_PATH+'default.svg']
@@ -91,6 +91,7 @@ class VERILOGPlugin(Magics):
             self.updateInstall()
 
         args = line.split()
+        print(args)
 
         file_path = os.path.join('/content/code')
         with open(file_path + ext, "w") as f:
