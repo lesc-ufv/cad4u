@@ -11,10 +11,10 @@ compiler = '/usr/local/cuda/bin/nvcc'
 ext = '.cu'
  
 @magics_class
-class NVCCPlugin(Magics):
+class CudaPlugin(Magics):
 
     def __init__(self, shell):
-        super(NVCCPlugin, self).__init__(shell)
+        super(CudaPlugin, self).__init__(shell)
         self.argparser = helper.get_argparser()
 
     @staticmethod
@@ -53,7 +53,7 @@ class NVCCPlugin(Magics):
             for f in flags:
                 flag += " -m " + f
 
-            args = ["sh", "/content/cad4u/nvcc/metric.sh", flag]
+            args = ["sh", "/content/cad4u/cuda/metric.sh", flag]
 
         output = subprocess.check_output(args, stderr=subprocess.STDOUT)
         output = output.decode('utf8')
@@ -136,4 +136,3 @@ class NVCCPlugin(Magics):
             self.run_ptx(file_path)
         except subprocess.CalledProcessError as e:
             helper.print_out(e.output.decode("utf8"))
-
