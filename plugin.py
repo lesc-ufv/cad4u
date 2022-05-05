@@ -1,4 +1,4 @@
-from nvcc.nvcc import NVCCPlugin as NVCC
+from cuda.cuda import CudaPlugin as CUDA
 from c.c import CPlugin as C
 from cpp.cpp import CPPPlugin as CPP
 from java.java import JavaPlugin as JAVA
@@ -8,8 +8,8 @@ from gem5.gem5 import Gem5Plugin as GEM5
 
 
 def load_ipython_extension(ip):
-    nvcc_plugin = NVCC(ip)
-    ip.register_magics(nvcc_plugin)
+    cuda_plugin = CUDA(ip)
+    ip.register_magics(cuda_plugin)
 
     c_plugin = C(ip)
     ip.register_magics(c_plugin)
