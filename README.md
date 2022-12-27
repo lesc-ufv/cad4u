@@ -19,9 +19,9 @@ Bibtex:
 
 | Colab Example | Resume |
 |---|---|
-| [Logic Synthesis](https://colab.research.google.com/drive/17JJO_xieu6KViiwOqkfQICSzPm80mfSf) | This lab is based PyEDA library |
-| [Verilog](https://colab.research.google.com/drive/1YOoWP8cBFKRnHSKQNgTaT33fAZWDIlCe) | This lab will illustrate three Colab extensions for verilog: %%verilog, %%print_verilog, %%waveform | 
-| [MIPS pipeline in Verilog](https://colab.research.google.com/drive/1rtNH9j4fwL4v89aNX6BC1G5nE6R0nfDR)| This lab shows an example of a CPU five-stage MIPS processor, including Hazard and Forward detection units. |
-| [GPU](https://colab.research.google.com/drive/1CQWSBJFagPQ1dsEhA-y-QkGWEMIAIaeK) | This lab presents three extensions to compile & execute GPU CUDA code |
-| [Valgrind](https://colab.research.google.com/drive/1ZBwjTCMNwEB219X9odyXwxcbW4gZYAz1) | This lab presents Colab extentions to use the Valgrind Cache Simulator. |
-| [Gem5](https://colab.research.google.com/drive/1zHiITe3WBPKBc8IacNyjLoOn47imAaYx) | This lab shows an extension for the Gem5 simulator framework. |
+| [Logic Synthesis](https://colab.research.google.com/drive/1AeVOU2mHccKqOkhd9KhY6-ooqtC0dJYU?usp=sharing) | This lab is based PyEDA library |
+| [Verilog](https://colab.research.google.com/drive/1kjGZU3p3AL__A0t7i6H9BHvKIdxTiP8-?usp=sharing) | This lab will illustrate three Colab extensions for verilog: %%verilog, %%print_verilog, %%waveform | 
+| [MIPS pipeline in Verilog](https://colab.research.google.com/drive/1LdvGAd7kNDFEq9UPzxOt-cxPMvftqktv?usp=sharing)| This lab shows an example of a CPU five-stage MIPS processor, including Hazard and Forward detection units. |
+| [GPU](https://colab.research.google.com/drive/1cKatrGThEwsCx9RUDMBxraz-mmU1fqJc?usp=sharing) | This lab presents three extensions to compile & execute GPU CUDA code |
+| [Valgrind](https://colab.research.google.com/drive/1ZOozqNX-VlOobMb5H1IDXEdMuzJ-38Du?usp=sharing) | This lab presents Colab extentions to use the Valgrind Cache Simulator. |
+| [Gem5](https://colab.research.google.com/drive/1Rqnl-4Py76mofFyWYiEZ69M_MPoFIUsS?usp=sharing) | This lab shows an extension for the Gem5 simulator framework. |
