@@ -21,13 +21,14 @@ class ValgrindPlugin(Magics):
         self.already_install = False
     
     def updateInstall(self):
-        print("Installing valgrind. Please wait... ", end="")
-        args = ["sh", "/content/cad4u/valgrind/update_install.sh"]
+        helper.updateInstall("apt install valgrind -y")
+        #print("Installing valgrind. Please wait... ", end="")
+        #args = ["sh", "/content/cad4u/valgrind/update_install.sh"]
 
-        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
-        output = output.decode('utf8')
+        #output = subprocess.check_output(args, stderr=subprocess.STDOUT)
+        #output = output.decode('utf8')
         #helper.print_out(output)
-        print("done!")
+        #print("done!")
     
     def parse_out(self, out, print_file):
         c = 0
@@ -142,7 +143,6 @@ class ValgrindPlugin(Magics):
         try:
             self.run_cpp(file_path)
             self.executeValgrind(args, print_file)
-
         except subprocess.CalledProcessError as e:
             helper.print_out(e.output.decode("utf8"))
     
