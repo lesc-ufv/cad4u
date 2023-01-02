@@ -1,7 +1,7 @@
 import subprocess
 import argparse
 
-
+'''
 def get_argparser():
     parser = argparse.ArgumentParser(description='Colab params')
     parser.add_argument("-h", "--help", action='store_true',
@@ -9,7 +9,7 @@ def get_argparser():
     parser.add_argument("-p", "--params", action='store_true',
                         help='flag to return the parameters')
     return parser
-
+'''
 
 def print_out(out: str):
     for l in out.split('\n'):

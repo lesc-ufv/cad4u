@@ -15,7 +15,7 @@ class llvmPlugin(Magics):
     
     def __init__(self, shell):
         super(llvmPlugin, self).__init__(shell)
-        self.argparser = colab.get_argparser()
+        #self.argparser = colab.get_argparser()
         self.already_install = False
     
     def install_dependecies(self):
