@@ -22,14 +22,14 @@ class llvmPlugin(Magics):
         list_dependecies = ["llvm-10", "clang-10"]
         if not self.already_install:
             self.already_install = True
-            colab.updateInstall(list_dependecies)
+            colab.updateInstall(list_dependecies, "LLVM")
 
     @cell_magic
     def opt(self, line, cell):
 
         self.install_dependecies()
 
-        print(self.argparser)
+        #print(self.argparser)
             
         pass
 

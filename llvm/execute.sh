@@ -1,1 +1,0 @@
-valgrind --tool=cachegrind $1 $2 $3 /content/valgrind_code.out

@@ -15,19 +15,11 @@ def print_out(out: str):
     for l in out.split('\n'):
         print(l)
 
-
-def list_to_string(list):
-    r = ""
-    for l in list:
-        r += l + " "
-    return r
-
-
 def updateInstall(list, toolName=""):
     print("Installing %s. Please wait... " % (toolName), end="")
-
+    output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
     try:
-        output = subprocess.check_output(["sh", "install.sh", list_to_string(list)], stderr=subprocess.STDOUT) 
+        output = subprocess.check_output(["apt", "install"] + list, stderr=subprocess.STDOUT) 
         output = output.decode('utf8')
         print("done!")
     except subprocess.CalledProcessError as e:
