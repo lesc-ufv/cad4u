@@ -25,7 +25,7 @@ class ValgrindPlugin(Magics):
         list_dependecies = ["valgrind"]
         if not self.already_install:
             self.already_install = True
-            colab.updateInstall(list_dependecies)
+            colab.install(list_dependecies)
     
     def parse_out(self, out, print_file):
         c = 0

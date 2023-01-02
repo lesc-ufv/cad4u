@@ -15,7 +15,7 @@ def print_out(out: str):
     for l in out.split('\n'):
         print(l)
 
-def updateInstall(list, toolName=""):
+def install(list, toolName=""):
     print("Installing %s. Please wait... " % (toolName), end="")
     output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
     try:
@@ -27,3 +27,14 @@ def updateInstall(list, toolName=""):
         print("failed!")
 
 
+def compile(compile, path_code, output, opt=""):
+    try:
+        out = subprocess.check_output([compile] + opt.split(" ") + [path_code, "-o", output], stderr=subprocess.STDOUT).decode('utf8') 
+    except subprocess.CalledProcessError as e:
+        print_out(e.out.decode("utf8"))
+
+def execute(prog, path_code, output="", opt=""):
+    try:
+        out = subprocess.check_output([prog] + opt.split(" ") + [path_code, "-o", output], stderr=subprocess.STDOUT).decode('utf8') 
+    except subprocess.CalledProcessError as e:
+        print_out(e.out.decode("utf8"))

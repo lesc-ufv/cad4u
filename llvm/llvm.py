@@ -22,16 +22,26 @@ class llvmPlugin(Magics):
         list_dependecies = ["llvm-10", "clang-10"]
         if not self.already_install:
             self.already_install = True
-            colab.updateInstall(list_dependecies, "LLVM")
+            colab.install(list_dependecies, "LLVM")
 
     @cell_magic
     def opt(self, line, cell):
 
         self.install_dependecies()
 
-        #print(self.argparser)
-            
-        pass
+        file_path = "/content/code"
+
+        with open(file_path + "cpp", "w") as f:
+            f.write(cell)
+        try:
+            colab.compile("clang-10", file_path, "code.ll", "-fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm")
+            colab.compile("opt-10", "code.ll", "code_opt.ll","-S -instnamer -mem2reg -O0")
+            #colab.compile("opt-10", "code_opt.ll", "code_final.ll", "--dot-cfg")
+            colab.execute("opt-10", "code_opt.ll", "", "--dot-cfg")
+        except subprocess.CalledProcessError as e:
+            helper.print_out(e.output.decode("utf8"))
+
+        
 
 '''
 @magics_class
