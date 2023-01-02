@@ -30,4 +30,5 @@ def load_ipython_extension(ip):
     gem5_plugin = GEM5(ip)
     ip.register_magics(gem5_plugin)
 
-    ip.register_magics(LLVM(ip))
+    llvm_plugin = LLVM(ip)
+    ip.register_magics(llvm_plugin)
