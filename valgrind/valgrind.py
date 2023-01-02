@@ -8,6 +8,7 @@ from IPython.display import display
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
+from common import colab
 
 compiler = '/usr/bin/g++'
 ext = '.cpp'
@@ -21,7 +22,7 @@ class ValgrindPlugin(Magics):
         self.already_install = False
     
     def updateInstall(self):
-        helper.updateInstall("apt install valgrind -y")
+        colab.updateInstall("apt install valgrind -y", "Valgrind")
         #print("Installing valgrind. Please wait... ", end="")
         #args = ["sh", "/content/cad4u/valgrind/update_install.sh"]
 
