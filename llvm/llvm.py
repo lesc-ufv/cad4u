@@ -31,7 +31,7 @@ class llvmPlugin(Magics):
 
         file_path = "/content/code"
 
-        with open(file_path + "cpp", "w") as f:
+        with open(file_path + ".cpp", "w") as f:
             f.write(cell)
         try:
             colab.compile("clang-10", file_path, "code.ll", "-fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm")
