@@ -6,7 +6,8 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 
 class Colab():
-
+    
+    @staticmethod
     def __init__(self):
         self.already_install = False
     
@@ -14,6 +15,7 @@ class Colab():
         for l in out.split('\n'):
             print(l)
 
+    @staticmethod
     def install(self, list, toolName=""):
         if not self.already_install:
             self.already_install = True
