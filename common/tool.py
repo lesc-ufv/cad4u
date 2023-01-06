@@ -14,7 +14,6 @@ class Colab():
         for l in out.split('\n'):
             print(l)
 
-    @staticmethod
     def install(self, list, toolName=""):
         if not self.already_install:
             self.already_install = True
