@@ -14,6 +14,7 @@ class Colab():
             print(l)
 
     def install(self, list, toolName=""):
+        global already_install
         if not already_install:
             already_install = True
 
