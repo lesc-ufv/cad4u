@@ -27,7 +27,7 @@ class VERILOGPlugin(Magics):
 
     def updateInstall(self):
         list_dependecies = ["iverilog", "python3-cairosvg", "yosys", "verilator"]
-        colab.install(list_dependecies, "LLVM")
+        colab.install(list_dependecies, "Verilog")
         
     @staticmethod
     def compile(file_path, flags):
