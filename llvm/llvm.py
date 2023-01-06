@@ -8,7 +8,7 @@ from IPython.display import display
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
-from common import colab
+from common import tool
 
 @magics_class
 class llvmPlugin(Magics):
@@ -22,7 +22,7 @@ class llvmPlugin(Magics):
         list_dependecies = ["llvm-10", "clang-10"]
         if not self.already_install:
             self.already_install = True
-            colab.install(list_dependecies, "LLVM")
+            tool.install(list_dependecies, "LLVM")
 
     @cell_magic
     def opt(self, line, cell):
@@ -34,10 +34,10 @@ class llvmPlugin(Magics):
         with open(file_path + ".cpp", "w") as f:
             f.write(cell)
         try:
-            colab.compile("clang-10", file_path, "code.ll", "-fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm")
-            colab.compile("opt-10", "code.ll", "code_opt.ll","-S -instnamer -mem2reg -O0")
+            tool.compile("clang-10", file_path, "code.ll", "-fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm")
+            tool.compile("opt-10", "code.ll", "code_opt.ll","-S -instnamer -mem2reg -O0")
             #colab.compile("opt-10", "code_opt.ll", "code_final.ll", "--dot-cfg")
-            colab.execute("opt-10", "code_opt.ll", "", "--dot-cfg")
+            tool.execute("opt-10", "code_opt.ll", "", "--dot-cfg")
         except subprocess.CalledProcessError as e:
             helper.print_out(e.output.decode("utf8"))
 

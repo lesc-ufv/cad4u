@@ -7,7 +7,7 @@ from IPython.display import display, Image, SVG
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
-from common import colab
+from common import tool
 
 compiler = 'iverilog'
 script_run = '/content/cad4u/verilog/script.ys'
@@ -27,7 +27,7 @@ class VERILOGPlugin(Magics):
 
     def updateInstall(self):
         list_dependecies = ["iverilog", "python3-cairosvg", "yosys", "verilator"]
-        colab.install(list_dependecies, "Verilog")
+        tool.install(list_dependecies, "Verilog")
         
     @staticmethod
     def compile(file_path, flags):
@@ -73,12 +73,15 @@ class VERILOGPlugin(Magics):
     @cell_magic
     def verilog(self, line, cell):
 
-        if not self.already_install:
-            self.already_install = True
-            self.updateInstall()
+        list_dependecies = ["iverilog", "python3-cairosvg", "yosys", "verilator"]
 
-        args = line.split()
-
+        colab = tool.Colab()
+        
+        colab.install(list_dependecies, "Verilog")
+        colab.compile("iverilog", cell, "code.v", "code.out", line.split())
+        colab.execute("code.out")
+        
+        '''
         with tempfile.TemporaryDirectory() as tmp_dir:
             file_path = os.path.join(tmp_dir, str(uuid.uuid4()))
             with open(file_path + ext, "w") as f:
@@ -88,7 +91,7 @@ class VERILOGPlugin(Magics):
                 self.run_verilog(file_path)
             except subprocess.CalledProcessError as e:
                 helper.print_out(e.output.decode("utf8"))
-    
+        '''
     @cell_magic
     def print_verilog(self, line, cell):
 

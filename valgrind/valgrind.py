@@ -8,7 +8,7 @@ from IPython.display import display
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
-from common import colab
+from common import tool
 
 compiler = '/usr/bin/g++'
 ext = '.cpp'
@@ -25,7 +25,7 @@ class ValgrindPlugin(Magics):
         list_dependecies = ["valgrind"]
         if not self.already_install:
             self.already_install = True
-            colab.install(list_dependecies)
+            tool.install(list_dependecies)
     
     def parse_out(self, out, print_file):
         c = 0
