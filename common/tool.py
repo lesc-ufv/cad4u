@@ -58,7 +58,6 @@ class Colab():
             self.print_out(e.out.decode("utf8"))
     
     def command_line(self, command, print_output=False):
-        print(command)
         out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT).decode('utf8')
         if (print_output):
             self.print_out(out)

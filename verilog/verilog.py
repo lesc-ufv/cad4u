@@ -79,7 +79,7 @@ class VERILOGPlugin(Magics):
         colab.install(list_dependecies, "Verilog")
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.execute("code.out")
-        
+       
     @cell_magic
     def print_verilog(self, line, cell):
         
@@ -93,7 +93,7 @@ class VERILOGPlugin(Magics):
         if line == "":
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
         else:
-            args = '/content/cad4u/verilog/yosys_command.sh '+ line + " code.v"
+            args = '/content/cad4u/verilog/yosys_command.sh ' + line + " code.v"
         
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.command_line(args)
@@ -101,23 +101,6 @@ class VERILOGPlugin(Magics):
         colab.command_line('cairosvg out.svg -o code.pdf')    
         colab.display_svg('out.svg')
         
-
-        '''
-        if not self.already_install:
-            self.already_install = True
-            self.updateInstall()
-
-        if "-top" not in line: 
-            line = ""
-
-        file_path = os.path.join('/content/code')
-        with open(file_path + ext, "w") as f:
-            f.write(cell)
-        try:
-            self.run_yosys(file_path, line)
-        except subprocess.CalledProcessError as e:
-            helper.print_out(e.output.decode("utf8"))
-        '''
     @cell_magic
     def waveform(self, line, cell):
 
