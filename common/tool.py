@@ -1,15 +1,9 @@
 import subprocess
 import argparse
 
-'''
-def get_argparser():
-    parser = argparse.ArgumentParser(description='Colab params')
-    parser.add_argument("-h", "--help", action='store_true',
-                        help='flag to return help')
-    parser.add_argument("-p", "--params", action='store_true',
-                        help='flag to return the parameters')
-    return parser
-'''
+from IPython.display import display, Image, SVG
+from IPython.core.magic import Magics, cell_magic, magics_class
+from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 
 class Colab():
 
@@ -62,3 +56,13 @@ class Colab():
             self.print_out(out)
         except subprocess.CalledProcessError as e:
             self.print_out(e.out.decode("utf8"))
+    
+    def command_line(self, command, print_output=False):
+        out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT).decode('utf8')
+        if (print_output):
+            self.print_out(out)
+
+    def display_svg(self, file_path):
+        if ".svg" not in file_path:
+            file_path += ".svg" 
+        display(SVG('/content/'+file_path))

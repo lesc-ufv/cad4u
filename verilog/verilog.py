@@ -76,25 +76,32 @@ class VERILOGPlugin(Magics):
         list_dependecies = ["iverilog", "python3-cairosvg", "yosys"]
 
         colab = tool.Colab()
-        
         colab.install(list_dependecies, "Verilog")
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.execute("code.out")
         
-        '''
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            file_path = os.path.join(tmp_dir, str(uuid.uuid4()))
-            with open(file_path + ext, "w") as f:
-                f.write(cell)
-            try:
-                self.compile(file_path, args)
-                self.run_verilog(file_path)
-            except subprocess.CalledProcessError as e:
-                helper.print_out(e.output.decode("utf8"))
-        '''
     @cell_magic
     def print_verilog(self, line, cell):
+        
+        list_dependecies = ["iverilog", "python3-cairosvg", "yosys"]
+        colab = tool.Colab()
+        colab.install(list_dependecies, "Verilog")
 
+        if "-top" not in line: 
+            line = ""
+
+        if line == "":
+            args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
+        else:
+            args = '/content/cad4u/verilog/yosys_command.sh '+ line
+        
+        colab.command_line(args)
+        colab.command_line('/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/verilog/netlistsvg/lib/default.svg')
+        colab.command_line('cairosvg out.svg -o code.pdf')    
+        colab.display_svg('out.svg')
+        
+
+        '''
         if not self.already_install:
             self.already_install = True
             self.updateInstall()
@@ -109,7 +116,7 @@ class VERILOGPlugin(Magics):
             self.run_yosys(file_path, line)
         except subprocess.CalledProcessError as e:
             helper.print_out(e.output.decode("utf8"))
-    
+        '''
     @cell_magic
     def waveform(self, line, cell):
 
