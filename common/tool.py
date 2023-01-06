@@ -5,18 +5,17 @@ from IPython.display import display, Image, SVG
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 
-class Colab():
+already_install = False
 
-    def __init__(self):
-        self.already_install = False
+class Colab():
     
     def print_out(self, out: str):
         for l in out.split('\n'):
             print(l)
 
     def install(self, list, toolName=""):
-        if not self.already_install:
-            self.already_install = True
+        if not already_install:
+            already_install = True
 
             print("Installing %s. Please wait... " % (toolName), end="")
             output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 

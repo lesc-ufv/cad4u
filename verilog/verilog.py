@@ -13,7 +13,6 @@ class VERILOGPlugin(Magics):
     def verilog(self, line, cell):
 
         list_dependecies = ["iverilog", "python3-cairosvg", "yosys"]
-
         colab = tool.Colab()
         colab.install(list_dependecies, "Verilog")
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
