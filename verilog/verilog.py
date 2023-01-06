@@ -8,11 +8,6 @@ class VERILOGPlugin(Magics):
     def __init__(self, shell):
         super(VERILOGPlugin, self).__init__(shell)
         self.argparser = helper.get_argparser()
-        self.already_install = False
-
-    def updateInstall(self):
-        list_dependecies = ["iverilog", "python3-cairosvg", "yosys", "verilator"]
-        tool.install(list_dependecies, "Verilog")
 
     @cell_magic
     def verilog(self, line, cell):
