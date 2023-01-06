@@ -73,7 +73,7 @@ class VERILOGPlugin(Magics):
     @cell_magic
     def verilog(self, line, cell):
 
-        list_dependecies = ["iverilog", "python3-cairosvg", "yosys", "verilator"]
+        list_dependecies = ["iverilog", "python3-cairosvg", "yosys"]
 
         colab = tool.Colab()
         

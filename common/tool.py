@@ -44,7 +44,7 @@ class Colab():
                 break
             args.append(flag)
 
-        with open(file_path, "w") as f:
+        with open("/content/"+file_path, "w") as f:
             f.write(cell)
         try:
             out = subprocess.check_output(args, stderr=subprocess.STDOUT)
@@ -54,7 +54,7 @@ class Colab():
     
     def execute(self, file_path, print_output=True):
 
-        args = [file_path]
+        args = ["/content/"+file_path]
 
         try:
             out = subprocess.check_output(args, stderr=subprocess.STDOUT)
