@@ -11,19 +11,16 @@ class VERILOGPlugin(Magics):
 
     @cell_magic
     def verilog(self, line, cell):
-
-        list_dependecies = ["iverilog", "python3-cairosvg", "yosys"]
         colab = tool.Colab()
-        colab.install(list_dependecies, "Verilog")
+        colab.install(["iverilog", "python3-cairosvg", "yosys"])
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.execute("code.out")
        
     @cell_magic
     def print_verilog(self, line, cell):
         
-        list_dependecies = ["iverilog", "python3-cairosvg", "yosys"]
         colab = tool.Colab()
-        colab.install(list_dependecies, "Verilog")
+        colab.install(["iverilog", "python3-cairosvg", "yosys"])
 
         if "-top" not in line: 
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
@@ -39,9 +36,8 @@ class VERILOGPlugin(Magics):
     @cell_magic
     def waveform(self, line, cell):
 
-        if not self.already_install:
-            self.already_install = True
-            self.updateInstall()
+        colab = tool.Colab()
+        colab.install(["iverilog", "python3-cairosvg", "yosys"])
 
         args = line.split()
 

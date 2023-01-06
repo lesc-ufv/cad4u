@@ -13,11 +13,10 @@ class Colab():
         for l in out.split('\n'):
             print(l)
 
-    def install(self, list, toolName=""):
+    def install(self, list):
         global already_install
         if not already_install:
             already_install = True
-
             print("Installing %s. Please wait... " % (toolName), end="")
             output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
             try:
