@@ -1,21 +1,6 @@
-import os
-import subprocess
-import tempfile
-import uuid
-import graphviz
-from IPython.display import display, Image, SVG
 from IPython.core.magic import Magics, cell_magic, magics_class
-from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
 from common import tool
-
-compiler = 'iverilog'
-script_run = '/content/cad4u/verilog/script.ys'
-script_yosys = '/content/cad4u/verilog/yosys_command.sh'
-netlistsvg_run = '/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js'
-SKIN_PATH='/content/cad4u/verilog/netlistsvg/lib/'
-
-ext = '.v'
 
 @magics_class
 class VERILOGPlugin(Magics):
@@ -28,47 +13,6 @@ class VERILOGPlugin(Magics):
     def updateInstall(self):
         list_dependecies = ["iverilog", "python3-cairosvg", "yosys", "verilator"]
         tool.install(list_dependecies, "Verilog")
-        
-    @staticmethod
-    def compile(file_path, flags):
-        args = [compiler, file_path + ext, "-o", file_path + ".out"]
-
-        # adding flags: -O3, -unroll-loops, ...
-        for flag in flags:
-            if flag == "<":
-                break
-            args.append(flag)
-        
-        subprocess.check_output(args, stderr=subprocess.STDOUT)
-
-    def run_verilog(self, file_path):
-        args = [file_path + ".out"]
-
-        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
-        output = output.decode('utf8')
-            
-        helper.print_out(output)
-    
-    def process(self, args, out=False):
-        output = subprocess.check_output(args, stderr=subprocess.STDOUT).decode('utf8')
-        if (out):
-            helper.print_out(output)
-    
-    def run_yosys(self, file_path, flag=""):
-        if flag == "":
-            args = ['yosys', "-Q", "-T", "-q", "-s", script_run]
-        else:
-            args = [script_yosys, flag]
-        self.process(args)
-
-        args = [netlistsvg_run, 'output.json', '--skin '+SKIN_PATH+'default.svg']
-        self.process(args)
-
-        args = ['cairosvg', 'out.svg', '-o code.pdf']
-        self.process(args)
-
-        # Print image
-        display(SVG('/content/out.svg'))
 
     @cell_magic
     def verilog(self, line, cell):
@@ -88,9 +32,6 @@ class VERILOGPlugin(Magics):
         colab.install(list_dependecies, "Verilog")
 
         if "-top" not in line: 
-            line = ""
-
-        if line == "":
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
         else:
             args = '/content/cad4u/verilog/yosys_command.sh ' + line + " code.v"
