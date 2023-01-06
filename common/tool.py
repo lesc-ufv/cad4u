@@ -52,7 +52,7 @@ class Colab():
         except subprocess.CalledProcessError as e:
             self.print_out(e.output.decode("utf8"))
     
-    def execute(self, prog, file_path, print_output=True):
+    def execute(self, file_path, print_output=True):
 
         args = [file_path]
 
