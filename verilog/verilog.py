@@ -7,6 +7,7 @@ from IPython.display import display, Image, SVG
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
+from common import colab
 
 compiler = 'iverilog'
 script_run = '/content/cad4u/verilog/script.ys'
@@ -25,14 +26,9 @@ class VERILOGPlugin(Magics):
         self.already_install = False
 
     def updateInstall(self):
-        print("Installing dependencies. Please wait... ", end="")
-        args = ["sh", "/content/cad4u/verilog/update_install.sh"]
-
-        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
-        output = output.decode('utf8')
-        #helper.print_out(output)
-        print("done!")
-
+        list_dependecies = ["iverilog", "python3-cairosvg", "yosys", "verilator"]
+        colab.install(list_dependecies, "LLVM")
+        
     @staticmethod
     def compile(file_path, flags):
         args = [compiler, file_path + ext, "-o", file_path + ".out"]
