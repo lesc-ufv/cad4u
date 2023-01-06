@@ -93,8 +93,9 @@ class VERILOGPlugin(Magics):
         if line == "":
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
         else:
-            args = '/content/cad4u/verilog/yosys_command.sh '+ line
+            args = '/content/cad4u/verilog/yosys_command.sh '+ line + " code.v"
         
+        colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.command_line(args)
         colab.command_line('/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/verilog/netlistsvg/lib/default.svg')
         colab.command_line('cairosvg out.svg -o code.pdf')    
