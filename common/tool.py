@@ -17,7 +17,7 @@ class Colab():
         global already_install
         if not already_install:
             already_install = True
-            print("Installing %s. Please wait... " % (toolName), end="")
+            print("Installing. Please wait... ", end="")
             output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
             try:
                 output = subprocess.check_output(["apt", "install"] + list, stderr=subprocess.STDOUT) 
