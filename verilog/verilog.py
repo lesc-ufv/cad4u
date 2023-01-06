@@ -1,5 +1,4 @@
 from IPython.core.magic import Magics, cell_magic, magics_class
-from common import helper
 from common import tool
 
 @magics_class
@@ -7,7 +6,6 @@ class VERILOGPlugin(Magics):
     
     def __init__(self, shell):
         super(VERILOGPlugin, self).__init__(shell)
-        self.argparser = helper.get_argparser()
 
     @cell_magic
     def verilog(self, line, cell):
