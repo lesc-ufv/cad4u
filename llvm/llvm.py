@@ -10,12 +10,12 @@ class llvmPlugin(Magics):
     @cell_magic
     def opt(self, line, cell):
 
+        colab = tool.Colab()
         if "--help" in line:
             colab.command_line("opt-10 --help")
 
         line += " -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm"
 
-        colab = tool.Colab()
         colab.install(["llvm-10", "clang-10"])
         colab.compile("clang-10", cell, "code.cpp", "code.ll", line.split())
         #colab.command_line("")
