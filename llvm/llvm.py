@@ -14,7 +14,7 @@ class llvmPlugin(Magics):
         colab.install(["llvm-10", "clang-10"])
 
         if "--help" in line:
-            colab.command_line("opt-10 --help")
+            colab.command_line("opt-10 --help", True)
 
         line += " -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm"
 
