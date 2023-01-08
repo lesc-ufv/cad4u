@@ -1,13 +1,4 @@
-import os
-import subprocess
-import tempfile
-import uuid
-from ipywidgets import *
-from IPython.display import display
-
 from IPython.core.magic import Magics, cell_magic, magics_class
-from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
-from common import helper
 from common import tool
 
 @magics_class
@@ -15,31 +6,21 @@ class llvmPlugin(Magics):
     
     def __init__(self, shell):
         super(llvmPlugin, self).__init__(shell)
-        #self.argparser = colab.get_argparser()
-        self.already_install = False
-    
-    def install_dependecies(self):
-        list_dependecies = ["llvm-10", "clang-10"]
-        if not self.already_install:
-            self.already_install = True
-            tool.install(list_dependecies, "LLVM")
 
     @cell_magic
     def opt(self, line, cell):
 
-        self.install_dependecies()
+        if "--help" in line:
+            colab.command_line("opt-10 --help")
 
-        file_path = "/content/code"
+        line += " -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm"
 
-        with open(file_path + ".cpp", "w") as f:
-            f.write(cell)
-        try:
-            tool.compile("clang-10", file_path, "code.ll", "-fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm")
-            tool.compile("opt-10", "code.ll", "code_opt.ll","-S -instnamer -mem2reg -O0")
-            #colab.compile("opt-10", "code_opt.ll", "code_final.ll", "--dot-cfg")
-            tool.execute("opt-10", "code_opt.ll", "", "--dot-cfg")
-        except subprocess.CalledProcessError as e:
-            helper.print_out(e.output.decode("utf8"))
+        colab = tool.Colab()
+        colab.install(["llvm-10", "clang-10"])
+        colab.compile("clang-10", cell, "code.cpp", "code.ll", line.split())
+        #colab.command_line("")
+
+        
 
         
 
