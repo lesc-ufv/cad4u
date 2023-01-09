@@ -18,6 +18,7 @@ class Colab():
     __program = ""
     __flag = ""
     __input = ""
+    __pos = 0
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -101,18 +102,20 @@ class Colab():
     
     def text(self, desc, x, y):
         self.__grid[x,y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
+        self.__pos += 1
 
     def on_value_change(self, change):
         self.__grid_values[change['owner'].name] = int(change['owner'].options[change['owner'].index])
         print(self.__grid_values)
 
     def dropdown(self, id, description, opt_list, x, y):
-        self.text(description, x, 0)
+        self.__grid[self.__pos,0] = Button(description=description, button_style="warning", layout=Layout(height='auto', width='auto'))
         dropdown = Dropdown(description="", layout=Layout(height='30px', width='auto'), value=opt_list[0], options=opt_list)
         dropdown.name = id
         self.__grid_values[id] = dropdown.value 
         dropdown.observe(self.on_value_change, names='value')
-        self.__grid[x,1] = dropdown
+        self.__grid[self.__pos,1] = dropdown
+        self.__pos += 1
     
     def parse_out_valgrind(self, out, print_file=False):
         c = 0
@@ -144,7 +147,7 @@ class Colab():
             b.button_style = 'success'
             b.description = "Start execution"
 
-    def exec(self, program, input, flag, x, y):
+    def exec(self, program, input, flag):
         self.__program = program 
         self.__input = input
         if not flag:
@@ -153,7 +156,8 @@ class Colab():
         btn = Button(description="Start execution", button_style="success", layout=Layout(height='auto', width='auto'))
         btn.name = "__exec__"
         btn.on_click(self.on_button_clicked)
-        self.__grid[x,y] = btn
+        self.__grid[self.__pos,0] = btn
+        self.__pos += 1
     
     def parameter(self, p):
         s = p

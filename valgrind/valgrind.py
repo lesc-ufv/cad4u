@@ -279,20 +279,17 @@ class ValgrindPlugin(Magics):
     @cell_magic
     def datacache(self, flag, cell):
 
-        if not flag:
-            flag = "--D1="
-
         colab = tool.Colab()        
         colab.install(["valgrind"])
         colab.compile("g++", cell, "code.cpp", "code.out")
         
         colab.grid(5,10)
-        colab.text("Data Cache", 0, 0)
-        colab.dropdown("size", "Size (kB)", [1,2,4,8,16], 1, 1)
-        colab.dropdown("assoc", "Associative", [1,2,4,8,16,32], 2, 1)
-        colab.dropdown("lines", "Line (Bytes)", [32, 64, 128], 3, 1)
+        colab.text("Data Cache")
+        colab.dropdown("size", "Size (kB)", [1,2,4,8,16])
+        colab.dropdown("assoc", "Associative", [1,2,4,8,16,32])
+        colab.dropdown("lines", "Line (Bytes)", [32, 64, 128])
 
-        colab.exec("valgrind","code.out", flag, 4, 0)
+        colab.exec("valgrind", "code.out", flag)
         colab.show()
     
     @cell_magic
