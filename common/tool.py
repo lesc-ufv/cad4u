@@ -125,7 +125,7 @@ class Colab():
             b.button_style = 'success'
             b.description = "Start Simulate"
 
-    def exec_valgrind(self, program, input, flag, x, y):
+    def exec(self, program, input, flag, x, y):
         self.__program = program 
         self.__input = input
         self.parameter(flag)
