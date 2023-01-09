@@ -76,9 +76,10 @@ class Colab():
             self.print_out(e.output.decode("utf8"))
 
     def print_cfg(self, command):
-        out = self.command_line(command)
-        print(out)
-        for l in out.split("\n"):
+        self.command_line(command + " &> /content/t.txt")
+        f = open("/content/t.txt", "r")
+        for l in f.readlines():
+            l = l.strip()
             if "Writing" in l:
                 name = l.split(" ")[1].replace("'","").replace("...","")
                 self.command_line("dot -Tpng "+name+" -o /content/"+name+".png")
