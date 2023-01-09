@@ -57,13 +57,16 @@ class Colab():
             self.print_out(e.out.decode("utf8"))
     
     def command_line(self, command, print_output=False):
-        out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT).decode('utf8')
-        if (print_output):
-            self.print_out(out)
-        return out
+        try:
+            out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT).decode('utf8')
+            if (print_output):
+                self.print_out(out)
+            return out
+        except subprocess.CalledProcessError as e:
+            self.print_out(e.out.decode("utf8"))
 
     def print_cfg(self, command):
-        out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT)
+        out = self.command_line(command)
         for l in out.split("\n"):
             if "Writing" in l:
                 name = l.split(" ")[1].replace("'","").replace("...","")
