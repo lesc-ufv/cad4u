@@ -63,7 +63,7 @@ class Colab():
         return out
 
     def print_cfg(self, command):
-        out = self.command_line(command, False)
+        out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT)
         for l in out.split("\n"):
             if "Writing" in l:
                 name = l.split(" ")[1].replace("'","").replace("...","")
