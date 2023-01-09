@@ -12,9 +12,8 @@ already_install = False
 
 class Colab():
 
-    def __init__(self):
-        __grid = GridspecLayout(1, 1)
-        __values_grid = {}
+    __grid = GridspecLayout(1, 1)
+    __grid_values = {}
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -101,8 +100,8 @@ class Colab():
         self.__grid[x,y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
 
     def on_value_change(self, change):
-        self.__values_grid[change['owner'].name] = int(change['owner'].options[change['owner'].index])
-        print(self.__values_grid)
+        self.__grid_values[change['owner'].name] = int(change['owner'].options[change['owner'].index])
+        print(self.__grid_values)
 
     def dropdown(self, id, opt_list, x, y):
         dropdown = Dropdown(description="", layout=Layout(height='30px', width='auto'), value=1, options=opt_list)
