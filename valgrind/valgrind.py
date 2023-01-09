@@ -290,7 +290,7 @@ class ValgrindPlugin(Magics):
         colab.text("Instruction Cache", 0, 0)
         colab.show()
 
-        colab.grid(3,10)
+        colab.grid(4,10)
         colab.text("Size (kB)", 0, 0)
         colab.dropdown("size", [1,2,4,8,16], 0, 1)
         colab.text("Associative", 1, 0)
