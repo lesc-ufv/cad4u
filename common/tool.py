@@ -14,6 +14,9 @@ class Colab():
 
     __grid = GridspecLayout(1, 1)
     __grid_values = {}
+    __param_values = ""
+    __input = ""
+    __program = ""
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -109,6 +112,34 @@ class Colab():
         dropdown.observe(self.on_value_change, names='value')
         self.__grid[x,y] = dropdown
     
+    def on_button_clicked(self, b):
+        if b.name == '__exec__':
+            b.button_style = 'danger'
+            b.description = 'wait'
+
+            print("Parameters: %s" %self.__param_values)
+
+            #self.command_line("valgrind --tool=cachegrind %s /content/code.out" %(self.__param_values), True)
+            
+            print("--" * 30) 
+            b.button_style = 'success'
+            b.description = "Start Simulate"
+
+    def exec_valgrind(self, program, input, flag, x, y):
+        self.__program = program 
+        self.__input = input
+        self.parameter(flag)
+        btn = Button(description="Start execution", button_style="success", layout=Layout(height='auto', width='auto'))
+        btn.name = "__exec__"
+        btn.on_click(self.on_button_clicked)
+        self.__grid[x,y] = btn
+    
+    def parameter(self, p):
+        s = p
+        s += str(1024*2^(self.__param_values["size"]))
+        s += "," + str(self.__param_values["assoc"]))
+        s += "," + str(self.__param_values["lines"])
+        return s
 
 '''
     botao(ID,descricao,i,j) - botao com o texto descricao, o ID que será gravado 
