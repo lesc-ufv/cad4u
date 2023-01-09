@@ -93,7 +93,6 @@ class Colab():
     
     def show(self):
         display(self.grid)
-        self.grid = None
     
     def grid(self, x, y):
         self.grid = GridspecLayout(x, y)
