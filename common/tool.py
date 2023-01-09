@@ -60,20 +60,19 @@ class Colab():
         args = ["/content/"+file_path]
 
         try:
-            out = subprocess.check_output(args, stderr=subprocess.STDOUT)
-            out = out.decode('utf8')
-            self.print_out(out)
+            output = subprocess.check_output(args, stderr=subprocess.STDOUT).decode('utf8')
+            self.print_out(output)
         except subprocess.CalledProcessError as e:
-            self.print_out(e.out.decode("utf8"))
+            self.print_out(e.output.decode("utf8"))
     
     def command_line(self, command, print_output=False):
         try:
-            out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT).decode('utf8')
+            output = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT).decode('utf8')
             if (print_output):
-                self.print_out(out)
-            return out
+                self.print_out(output)
+            return output
         except subprocess.CalledProcessError as e:
-            self.print_out(e.out.decode("utf8"))
+            self.print_out(e.output.decode("utf8"))
 
     def print_cfg(self, command):
         out = self.command_line(command)
