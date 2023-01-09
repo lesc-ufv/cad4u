@@ -92,7 +92,8 @@ class Colab():
         display(SVG('/content/'+file_path))
     
     def show(self):
-        return display(self.grid)
+        display(self.grid)
+        self.grid = None
     
     def grid(self, x, y):
         self.grid = GridspecLayout(x, y)
