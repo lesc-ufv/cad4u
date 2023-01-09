@@ -88,7 +88,7 @@ class Colab():
     def display_png(self, file_path):
         if ".png" not in file_path:
             file_path += ".png"
-        display(filename="/content"+file_path)
+        display(filename=file_path)
 
     def display_svg(self, file_path):
         if ".svg" not in file_path:
