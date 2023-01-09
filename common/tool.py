@@ -76,7 +76,7 @@ class Colab():
             self.print_out(e.output.decode("utf8"))
 
     def print_cfg(self, command):
-        self.command_line(command + " &> /content/t.txt")
+        self.command_line(command)
         f = open("/content/t.txt", "r")
         for l in f.readlines():
             l = l.strip()
