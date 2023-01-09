@@ -19,7 +19,6 @@ class Colab():
     __flag = ""
     __input = ""
     __pos = 0
-    __max_size_grid = 1
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -99,7 +98,7 @@ class Colab():
         display(self.__grid)
     
     def grid(self, number_row, number_col=10):
-        self.__grid = GridspecLayout(number_row+1, 10)
+        self.__grid = GridspecLayout(number_row, 10)
     
     def text(self, desc):
         self.__grid[self.__pos,0] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
