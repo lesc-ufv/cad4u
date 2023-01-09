@@ -60,6 +60,20 @@ class Colab():
         out = subprocess.check_output(command.split(" "), stderr=subprocess.STDOUT).decode('utf8')
         if (print_output):
             self.print_out(out)
+        return out
+
+    def print_cfg(self, command):
+        out = self.command_line(command, False)
+        for l in out.split("\n"):
+            if "Writing" in l:
+                name = l.split(" ")[1].replace("'","").replace("...","")
+                self.command_line("dot -Tpng "+name+" -o /content/"+name+".png")
+                self.display_png("/content/"+name+".png")
+                
+    def display_png(self, file_path):
+        if ".png" not in file_path:
+            file_path += ".png"
+        display(filename="/content"+file_path)
 
     def display_svg(self, file_path):
         if ".svg" not in file_path:

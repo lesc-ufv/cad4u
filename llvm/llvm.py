@@ -15,13 +15,13 @@ class llvmPlugin(Magics):
 
         if "--help" in line:
             colab.command_line("opt-10 --help", True)
+            line.replace("--help", "")
 
         line += " -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm"
 
         colab.compile("clang-10", cell, "code.cpp", "code.ll", line.split())
-        #colab.command_line("")
 
-        
+        colab.print_cfg("opt-10 --view-cfg code.ll")
 
         
 
