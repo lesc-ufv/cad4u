@@ -108,7 +108,7 @@ class Colab():
         self.__grid_values[change['owner'].name] = int(change['owner'].options[change['owner'].index])
         print(self.__grid_values)
 
-    def dropdown(self, id, description, opt_list, x, y):
+    def dropdown(self, id, description, opt_list):
         self.__grid[self.__pos,0] = Button(description=description, button_style="warning", layout=Layout(height='auto', width='auto'))
         dropdown = Dropdown(description="", layout=Layout(height='30px', width='auto'), value=opt_list[0], options=opt_list)
         dropdown.name = id
