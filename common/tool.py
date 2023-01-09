@@ -113,6 +113,19 @@ class Colab():
         dropdown.observe(self.on_value_change, names='value')
         self.__grid[x,y] = dropdown
     
+    def parse_out_valgrind(self, out, print_file=False):
+        c = 0
+        if print_file:
+            f = open("/content/print_out.txt", "w")
+        for l in out.split('\n'):
+            if c > 12:
+                res = l.split("==")
+                if len(res) > 1:
+                    print(res[2][1:])
+                    if print_file:
+                        f.write(res[2][1:] + "\n")
+            c += 1
+
     def on_button_clicked(self, b):
         if b.name == '__exec__':
             b.button_style = 'danger'
@@ -120,10 +133,12 @@ class Colab():
 
             self.parameter(self.__flag)
 
-            print("Parameters: %s" %self.__param_values)
+            if self.__program == "valgrind":
+                out = self.command_line("%s --tool=cachegrind %s /content/%s" %(self.__program, self.__param_values, self.__input), False)
+                self.parse_out_valgrind(out)
+            else:
+                self.command_line("%s %s /content/%s &> " %(self.__program, self.__param_values, self.__input), True)
 
-            self.command_line("%s --tool=cachegrind %s /content/%s" %(self.__program, self.__param_values, self.__input), True)
-            
             print("--" * 30) 
             b.button_style = 'success'
             b.description = "Start Simulate"
