@@ -284,7 +284,7 @@ class ValgrindPlugin(Magics):
         colab.compile("g++", cell, "code.cpp", "code.out", line.split())
         
         colab.grid(5,1)
-        colab.text("Instruction Cache")
+        colab.text("Instruction Cache", 0, 0)
         colab.show()
 
         '''
