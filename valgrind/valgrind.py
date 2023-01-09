@@ -286,35 +286,17 @@ class ValgrindPlugin(Magics):
         colab.install(["valgrind"])
         colab.compile("g++", cell, "code.cpp", "code.out")
         
-        colab.grid(1,5)
+        colab.grid(5,10)
         colab.text("Instruction Cache", 0, 0)
-        colab.show()
-
-        colab.grid(4,10)
-        colab.text("Size (kB)", 0, 0)
-        colab.dropdown("size", [1,2,4,8,16], 1, 0, 1)
-        colab.text("Associative", 1, 0)
-        colab.dropdown("assoc", [1,2,4,8,16,32], 1, 1, 1)
-        colab.text("Line (Bytes)", 2, 0)
-        colab.dropdown("lines", [32, 64, 128], 32, 2, 1)
+        colab.text("Size (kB)", 1, 0)
+        colab.dropdown("size", [1,2,4,8,16], 1, 1, 1)
+        colab.text("Associative", 2, 0)
+        colab.dropdown("assoc", [1,2,4,8,16,32], 1, 2, 1)
+        colab.text("Line (Bytes)", 3, 0)
+        colab.dropdown("lines", [32, 64, 128], 32, 3, 1)
 
         colab.exec("valgrind","code.out", flag, 3, 0)
         colab.show()
-
-        
-
-
-        '''
-        file_path = '/content/valgrind_code'
-
-        with open(file_path + ext, "w") as f:
-            f.write(cell)
-        try:
-            self.run_cpp(file_path)
-            self.create_visual('data')
-        except subprocess.CalledProcessError as e:
-            helper.print_out(e.output.decode("utf8"))
-        '''
     
     @cell_magic
     def instructioncache(self, line, cell):
