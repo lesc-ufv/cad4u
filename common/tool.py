@@ -101,7 +101,7 @@ class Colab():
         self.__grid = GridspecLayout(x, y)
     
     def text(self, desc):
-        self.__grid[self.__pos,0] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='40'))
+        self.__grid[self.__pos,0] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='45px'))
         self.__pos += 1
 
     def on_value_change(self, change):
@@ -109,8 +109,8 @@ class Colab():
         print(self.__grid_values)
 
     def dropdown(self, id, description, opt_list):
-        self.__grid[self.__pos,0] = Button(description=description, button_style="warning", layout=Layout(height='auto', width='auto'))
-        dropdown = Dropdown(description="", layout=Layout(height='30px', width='auto'), value=opt_list[0], options=opt_list)
+        self.__grid[self.__pos,0] = Button(description=description, button_style="warning", layout=Layout(height='auto', width='45px'))
+        dropdown = Dropdown(description="", layout=Layout(height='30px', width='45px'), value=opt_list[0], options=opt_list)
         dropdown.name = id
         self.__grid_values[id] = dropdown.value 
         dropdown.observe(self.on_value_change, names='value')
