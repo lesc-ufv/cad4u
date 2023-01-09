@@ -296,7 +296,7 @@ class ValgrindPlugin(Magics):
         colab.text("Associative", 1, 0)
         colab.dropdown("assoc", [1,2,4,8,16,32], 1, 1, 1)
         colab.text("Line (Bytes)", 2, 0)
-        colab.dropdown("lines", [32, 64, 128], 32, 1, 2)
+        colab.dropdown("lines", [32, 64, 128], 32, 2, 1)
 
         colab.exec("valgrind","code.out", flag, 3, 0)
         colab.show()
