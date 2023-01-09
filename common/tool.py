@@ -98,5 +98,5 @@ class Colab():
     def grid(self, x, y):
         self.grid = GridspecLayout(x, y)
     
-    def text(self, id, desc, x, y):
+    def text(self, desc, x, y):
         self.grid[x][y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
