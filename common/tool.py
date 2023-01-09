@@ -14,8 +14,7 @@ class Colab():
 
     def __init__(self):
         grid = GridspecLayout(1, 1)
-        pos_x = 0
-        pos_y = 0
+        values_grid = {}
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -100,3 +99,35 @@ class Colab():
     
     def text(self, desc, x, y):
         self.grid[x,y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
+
+    def on_value_change(self, change):
+        self.values_grid[change['owner'].name] = int(change['owner'].options[change['owner'].index])
+        print(self.values_grid)
+
+
+    def dropdown(self, id, desc, opt_list, increment, x, y):
+        dropdown = Dropdown(description=desc, layout=Layout(height='30px', width='auto'), value=increment, options=opt_list)
+        dropdown.name = id
+        dropdown.observe(self.on_value_change, names='value')
+        self.grid[x,y] = dropdown
+    
+
+'''
+    botao(ID,descricao,i,j) - botao com o texto descricao, o ID que será gravado 
+    em um dicionario para recuperar o IDX de onde esta seu valor na lista
+
+    dropdown(ID,descricao,lista_opcoes)
+
+    texto(ID,descricao)
+
+    slider(ID,descricao)
+
+    os botoes escrevem o valor no dicionario
+    valor(ID)
+
+    para criar 3 botoes
+    grid(3,1)
+    dropdown("linha","Tamanho da Linha Cache",[2,4,8,16],0,0)
+    dropdown("assoc","Associativadade Cache",[1,2,4,8],1,0)
+    dropdown("Tamanho","Tamanho Cache KB",[1,2,4,8,16,32,64],2,0)
+'''

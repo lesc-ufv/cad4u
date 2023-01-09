@@ -287,6 +287,14 @@ class ValgrindPlugin(Magics):
         colab.text("Instruction Cache", 0, 0)
         colab.show()
 
+        colab.grid(3,10)
+        colab.text("Size (kB)", 0, 0)
+        colab.dropdown("size", "Associative", [1,2,4,8,16], 1, 0, 1)
+        colab.show()
+
+        
+
+
         '''
         file_path = '/content/valgrind_code'
 
