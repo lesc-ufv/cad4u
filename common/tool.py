@@ -13,8 +13,8 @@ already_install = False
 class Colab():
 
     def __init__(self):
-        grid = GridspecLayout(1, 1)
-        values_grid = {}
+        __grid = GridspecLayout(1, 1)
+        __values_grid = {}
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -92,23 +92,23 @@ class Colab():
         display(SVG('/content/'+file_path))
     
     def show(self):
-        display(self.grid)
+        display(self.__grid)
     
     def grid(self, x, y):
-        self.grid = GridspecLayout(x, y)
+        self.__grid = GridspecLayout(x, y)
     
     def text(self, desc, x, y):
-        self.grid[x,y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
+        self.__grid[x,y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
 
     def on_value_change(self, change):
-        self.values_grid[change['owner'].name] = int(change['owner'].options[change['owner'].index])
-        print(self.values_grid)
+        self.__values_grid[change['owner'].name] = int(change['owner'].options[change['owner'].index])
+        print(self.__values_grid)
 
     def dropdown(self, id, desc, opt_list, increment, x, y):
         dropdown = Dropdown(description=desc, layout=Layout(height='30px', width='auto'), value=increment, options=opt_list)
         dropdown.name = id
         dropdown.observe(self.on_value_change, names='value')
-        self.grid[x,y] = dropdown
+        self.__grid[x,y] = dropdown
     
 
 '''
