@@ -122,7 +122,7 @@ class Colab():
 
             print("Parameters: %s" %self.__param_values)
 
-            self.command_line("%s --tool=cachegrind %s %s" %(self.__program, self.__param_values, self.__input), True)
+            self.command_line("%s --tool=cachegrind /content/%s %s" %(self.__program, self.__param_values, self.__input), True)
             
             print("--" * 30) 
             b.button_style = 'success'
