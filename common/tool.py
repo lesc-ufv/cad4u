@@ -106,7 +106,6 @@ class Colab():
 
     def on_value_change(self, change):
         self.__grid_values[change['owner'].name] = int(change['owner'].options[change['owner'].index])
-        print(self.__grid_values)
 
     def dropdown(self, id, description, opt_list):
         self.__grid[self.__pos,0] = Button(description=description, button_style="warning", layout=Layout(height='auto', width='auto'))
