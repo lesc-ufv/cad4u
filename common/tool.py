@@ -67,6 +67,7 @@ class Colab():
 
     def print_cfg(self, command):
         out = self.command_line(command)
+        print(out)
         for l in out.split("\n"):
             if "Writing" in l:
                 name = l.split(" ")[1].replace("'","").replace("...","")
