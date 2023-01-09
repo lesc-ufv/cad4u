@@ -17,6 +17,7 @@ class Colab():
     __param_values = ""
     __program = ""
     __flag = ""
+    __input = ""
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -122,14 +123,15 @@ class Colab():
 
             print("Parameters: %s" %self.__param_values)
 
-            self.command_line(self.__program+" --tool=cachegrind %s /content/code.out" %(self.__param_values), True)
+            self.command_line("%s --tool=cachegrind %s %s" %(self.__program, self.__param_values, self.__input), True)
             
             print("--" * 30) 
             b.button_style = 'success'
             b.description = "Start Simulate"
 
-    def exec(self, program, flag, x, y):
+    def exec(self, program, input, flag, x, y):
         self.__program = program 
+        self.__input = input
         self.__flag = flag
         btn = Button(description="Start execution", button_style="success", layout=Layout(height='auto', width='auto'))
         btn.name = "__exec__"
