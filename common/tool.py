@@ -36,7 +36,7 @@ class Colab():
                 self.print_out(e.output.decode("utf8"))
                 print("failed!")
     
-    def compile(self, compiler, cell, file_path, file_output, flags):
+    def compile(self, compiler, cell, file_path, file_output, flags=[]):
 
         args = [compiler, file_path, "-o", file_output]
 
