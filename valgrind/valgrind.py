@@ -287,7 +287,7 @@ class ValgrindPlugin(Magics):
         colab.compile("g++", cell, "code.cpp", "code.out")
         
         colab.grid(5,10)
-        colab.text("Instruction Cache", 0, 0)
+        colab.text("Data Cache", 0, 0)
         colab.text("Size (kB)", 1, 0)
         colab.dropdown("size", [1,2,4,8,16], 1, 1, 1)
         colab.text("Associative", 2, 0)
