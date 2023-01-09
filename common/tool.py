@@ -153,7 +153,6 @@ class Colab():
         self.__grid[x,y] = btn
     
     def parameter(self, p):
-        print(self.__grid_values)
         s = p
         s += str(1024*(2**(self.__grid_values["size"])))
         s += "," + str(self.__grid_values["assoc"])
