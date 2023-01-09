@@ -120,6 +120,7 @@ class Colab():
     
     def parse_out_valgrind(self, out, print_file=False):
         c = 0
+        print("Parameters: %d, %d, %d\n" %(1024*(2**(self.__grid_values["size"]), self.__grid_values["assoc"], self.__grid_values["lines"]))
         if print_file:
             f = open("/content/print_out.txt", "w")
         for l in out.split('\n'):
@@ -138,6 +139,7 @@ class Colab():
 
             self.parameter(self.__flag)
 
+            print("--" * 30) 
             if self.__program == "valgrind":
                 out = self.command_line("%s --tool=cachegrind %s /content/%s" %(self.__program, self.__param_values, self.__input), False)
                 self.parse_out_valgrind(out)
