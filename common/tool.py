@@ -76,7 +76,7 @@ class Colab():
             self.print_out(e.output.decode("utf8"))
 
     def print_cfg(self, command):
-        self.command_line("sh /content/cad4u/llvm/execute.sh \'" + command + "\' &> t.txt")
+        self.command_line("sh /content/cad4u/llvm/execute.sh " + command + " &> t.txt")
         f = open("/content/t.txt", "r")
         for l in f.readlines():
             l = l.strip()
