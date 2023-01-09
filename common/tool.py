@@ -137,7 +137,7 @@ class Colab():
     def parameter(self, p):
         s = p
         s += str(1024*2^(self.__param_values["size"]))
-        s += "," + str(self.__param_values["assoc"]))
+        s += "," + str(self.__param_values["assoc"])
         s += "," + str(self.__param_values["lines"])
         return s
 
