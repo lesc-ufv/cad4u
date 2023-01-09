@@ -141,7 +141,7 @@ class Colab():
 
             print("--" * 30) 
             b.button_style = 'success'
-            b.description = "Start Simulate"
+            b.description = "Start execution"
 
     def exec(self, program, input, flag, x, y):
         self.__program = program 
