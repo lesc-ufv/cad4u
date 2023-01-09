@@ -1,5 +1,6 @@
 import subprocess
 import argparse
+import os
 
 from IPython.display import display, Image, SVG
 from IPython.core.magic import Magics, cell_magic, magics_class
@@ -77,13 +78,12 @@ class Colab():
 
     def print_cfg(self, optimization, input_path):
         self.command_line("sh /content/cad4u/llvm/execute.sh " + optimization + " /content/" + input_path)
-        f = open("/content/t.txt", "r")
-        for l in f.readlines():
-            l = l.strip()
-            if "Writing" in l:
-                name = l.split(" ")[1].replace("'","").replace("...","")
+        for file in os.listdir("/content"):
+            if file.endswith(".dot"):
+                name = "/content/" + file
                 self.command_line("dot -Tpng "+name+" -o /content/"+name+".png")
                 self.display_png("/content/"+name+".png")
+                
                 
     def display_png(self, file_path):
         if ".png" not in file_path:
