@@ -235,11 +235,13 @@ class ValgrindPlugin(Magics):
 
         def create_Text(description="", button_style=""):
             return Button(description=description, button_style=button_style, layout=Layout(height='auto', width='auto'))
+
         def create_Dropdown(id, description="", options=[], value='1'):
             dropdown = Dropdown(description=description, layout=Layout(height='30px', width='auto'), value=value, options=options)
             dropdown.name = id
             dropdown.observe(on_value_change, names='value')
             return dropdown
+
         def create_button(id, description="", button_style=""):
             btn = Button(description=description, button_style=button_style, layout=Layout(height='auto', width='auto'))
             btn.name = id
@@ -276,10 +278,16 @@ class ValgrindPlugin(Magics):
 
     @cell_magic
     def datacache(self, line, cell):
-        if not self.already_install:
-            self.already_install = True
-            self.updateInstall()
+
+        colab = tool.Colab()
+        colab.install(["valgrind"])
+        colab.compile("g++", cell, "code.cpp", "code.out", line.split())
         
+        colab.grid(5,1)
+        colab.text("Instruction Cache")
+        colab.show()
+
+        '''
         file_path = '/content/valgrind_code'
 
         with open(file_path + ext, "w") as f:
@@ -289,6 +297,7 @@ class ValgrindPlugin(Magics):
             self.create_visual('data')
         except subprocess.CalledProcessError as e:
             helper.print_out(e.output.decode("utf8"))
+        '''
     
     @cell_magic
     def instructioncache(self, line, cell):

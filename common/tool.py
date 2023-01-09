@@ -5,9 +5,17 @@ from IPython.display import display, Image, SVG
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 
+import matplotlib.pyplot as plt 
+from ipywidgets import *
+
 already_install = False
 
 class Colab():
+
+    def __init__(self):
+        grid = GridspecLayout(1, 1)
+        pos_x = 0
+        pos_y = 0
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -83,3 +91,12 @@ class Colab():
         if ".svg" not in file_path:
             file_path += ".svg" 
         display(SVG('/content/'+file_path))
+    
+    def show(self):
+        return display(self.grid)
+    
+    def grid(self, x, y):
+        self.grid = GridspecLayout(x, y)
+    
+    def text(self, id, desc, x, y):
+        self.grid[x][y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
