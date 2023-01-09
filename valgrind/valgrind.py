@@ -289,7 +289,7 @@ class ValgrindPlugin(Magics):
 
         colab.grid(3,10)
         colab.text("Size (kB)", 0, 0)
-        colab.dropdown("size", "Associative", [1,2,4,8,16], 1, 0, 1)
+        colab.dropdown("size", [1,2,4,8,16], 0, 1)
         colab.show()
 
         
