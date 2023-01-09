@@ -75,8 +75,8 @@ class Colab():
         except subprocess.CalledProcessError as e:
             self.print_out(e.output.decode("utf8"))
 
-    def print_cfg(self, command):
-        self.command_line("sh /content/cad4u/llvm/execute.sh " + command + " &> t.txt")
+    def print_cfg(self, optimization, input_path):
+        self.command_line("sh /content/cad4u/llvm/execute.sh " + optimization + " /content/" + input_path)
         f = open("/content/t.txt", "r")
         for l in f.readlines():
             l = l.strip()

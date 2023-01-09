@@ -21,7 +21,7 @@ class llvmPlugin(Magics):
 
         colab.compile("clang-10", cell, "code.cpp", "code.ll", line.split())
 
-        colab.print_cfg("opt-10 -dot-cfg code.ll -disable-output --enable-newgvn=0")
+        colab.print_cfg("--dot-cfg", "code.ll")
 
         
 
