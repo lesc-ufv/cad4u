@@ -288,12 +288,9 @@ class ValgrindPlugin(Magics):
         
         colab.grid(5,10)
         colab.text("Data Cache", 0, 0)
-        colab.text("Size (kB)", 1, 0)
-        colab.dropdown("size", [1,2,4,8,16], 1, 1, 1)
-        colab.text("Associative", 2, 0)
-        colab.dropdown("assoc", [1,2,4,8,16,32], 1, 2, 1)
-        colab.text("Line (Bytes)", 3, 0)
-        colab.dropdown("lines", [32, 64, 128], 32, 3, 1)
+        colab.dropdown("size", "Size (kB)", [1,2,4,8,16], 1, 1)
+        colab.dropdown("assoc", "Associative", [1,2,4,8,16,32], 2, 1)
+        colab.dropdown("lines", "Line (Bytes)", [32, 64, 128], 3, 1)
 
         colab.exec("valgrind","code.out", flag, 4, 0)
         colab.show()
