@@ -98,8 +98,8 @@ class Colab():
     def show(self):
         display(self.__grid)
     
-    def grid(self, x, y):
-        self.__grid = GridspecLayout(x+1, 10)
+    def grid(self, number_row, number_col=10):
+        self.__grid = GridspecLayout(number_row+1, 10)
     
     def text(self, desc):
         self.__grid[self.__pos,0] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
