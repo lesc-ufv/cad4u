@@ -16,6 +16,7 @@ class Colab():
     __grid_values = {}
     __param_values = ""
     __program = ""
+    __flag = ""
     
     def print_out(self, out: str):
         for l in out.split('\n'):
@@ -117,9 +118,11 @@ class Colab():
             b.button_style = 'danger'
             b.description = 'wait'
 
+            self.parameter(self.__flag)
+
             print("Parameters: %s" %self.__param_values)
 
-            #self.command_line("valgrind --tool=cachegrind %s /content/code.out" %(self.__param_values), True)
+            self.command_line(self.__program+" --tool=cachegrind %s /content/code.out" %(self.__param_values), True)
             
             print("--" * 30) 
             b.button_style = 'success'
@@ -127,6 +130,7 @@ class Colab():
 
     def exec(self, program, flag, x, y):
         self.__program = program 
+        self.__flag = flag
         btn = Button(description="Start execution", button_style="success", layout=Layout(height='auto', width='auto'))
         btn.name = "__exec__"
         btn.on_click(self.on_button_clicked)

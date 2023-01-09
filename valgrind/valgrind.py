@@ -298,7 +298,7 @@ class ValgrindPlugin(Magics):
         colab.text("Line (Bytes)", 2, 0)
         colab.dropdown("lines", 32*[1,2,4,8,16,32], 1, 2, 1)
 
-        colab.exec("valgrind code.out", flag, 3, 1)
+        colab.exec("valgrind code.out", flag, 3, 0)
         colab.show()
 
         
