@@ -292,11 +292,11 @@ class ValgrindPlugin(Magics):
 
         colab.grid(4,10)
         colab.text("Size (kB)", 0, 0)
-        colab.dropdown("size", [1,2,4,8,16], 0, 1)
+        colab.dropdown("size", [1,2,4,8,16], 1, 0, 1)
         colab.text("Associative", 1, 0)
-        colab.dropdown("assoc", [1,2,4,8,16,32], 1, 1)
+        colab.dropdown("assoc", [1,2,4,8,16,32], 1, 1, 1)
         colab.text("Line (Bytes)", 2, 0)
-        colab.dropdown("lines", 32*[1,2,4,8,16,32], 2, 1)
+        colab.dropdown("lines", 32*[1,2,4,8,16,32], 1, 2, 1)
 
         colab.exec("valgrind code.out", flag, 3, 1)
         colab.show()

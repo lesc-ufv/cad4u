@@ -105,9 +105,10 @@ class Colab():
         self.__grid_values[change['owner'].name] = int(change['owner'].options[change['owner'].index])
         print(self.__grid_values)
 
-    def dropdown(self, id, opt_list, x, y):
-        dropdown = Dropdown(description="", layout=Layout(height='30px', width='auto'), value=1, options=opt_list)
+    def dropdown(self, id, opt_list, value, x, y):
+        dropdown = Dropdown(description="", layout=Layout(height='30px', width='auto'), value=value, options=opt_list)
         dropdown.name = id
+        self.__grid_values[id] = dropdown.value 
         dropdown.observe(self.on_value_change, names='value')
         self.__grid[x,y] = dropdown
     
