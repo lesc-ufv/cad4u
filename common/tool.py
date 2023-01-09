@@ -81,8 +81,8 @@ class Colab():
         for file in os.listdir("/content"):
             if file.endswith(".dot"):
                 name = "/content/" + file
-                self.command_line("dot -Tpng "+name+" -o /content/"+name+".png")
-                self.display_png("/content/"+name+".png")
+                self.command_line("dot -Tpng "+name+" -o "+name+".png")
+                self.display_png(name + ".png")
                 
                 
     def display_png(self, file_path):
