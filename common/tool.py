@@ -100,8 +100,8 @@ class Colab():
     def grid(self, x, y):
         self.__grid = GridspecLayout(x, y)
     
-    def text(self, desc, x, y):
-        self.__grid[x,y] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
+    def text(self, desc):
+        self.__grid[self.__pos,0] = Button(description=desc, button_style="warning", layout=Layout(height='auto', width='auto'))
         self.__pos += 1
 
     def on_value_change(self, change):
