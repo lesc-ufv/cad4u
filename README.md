@@ -25,3 +25,7 @@ Bibtex:
 | [GPU](https://colab.research.google.com/drive/1cKatrGThEwsCx9RUDMBxraz-mmU1fqJc?usp=sharing) | This lab presents three extensions to compile & execute GPU CUDA code |
 | [Valgrind](https://colab.research.google.com/drive/1ZOozqNX-VlOobMb5H1IDXEdMuzJ-38Du?usp=sharing) | This lab presents Colab extentions to use the Valgrind Cache Simulator. |
 | [Gem5](https://colab.research.google.com/drive/1Rqnl-4Py76mofFyWYiEZ69M_MPoFIUsS?usp=sharing) | This lab shows an extension for the Gem5 simulator framework. |
+
+# Video:
+
+[EduComp2023](https://youtu.be/T9K0eep3JWQ) - Ideias para uso do Google Colab no Ensino de Computação
