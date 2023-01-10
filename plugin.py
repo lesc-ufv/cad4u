@@ -6,6 +6,7 @@ from verilog.verilog import VERILOGPlugin as VERILOG
 from valgrind.valgrind import ValgrindPlugin as Valgrind
 from gem5.gem5 import Gem5Plugin as GEM5
 from llvm.llvm import llvmPlugin as LLVM
+from rust.rust import RUSTPlugin as Rust
 
 
 def load_ipython_extension(ip):
@@ -32,3 +33,6 @@ def load_ipython_extension(ip):
 
     llvm_plugin = LLVM(ip)
     ip.register_magics(llvm_plugin)
+
+    rust_plugin = Rust(ip)
+    ip.register_magics(rust_plugin)
