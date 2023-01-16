@@ -1,6 +1,8 @@
 import subprocess
 import argparse
 import os
+import wavedrom
+import json
 
 from IPython.display import display, Image, SVG, IFrame
 from IPython.core.magic import Magics, cell_magic, magics_class
@@ -111,17 +113,15 @@ class Colab():
         display(SVG('/content/'+file_path))
     
     def display_wavedrowm(self, file_path):
-        import wavedrom
-        svg = wavedrom.render("""
-        { "signal": [
-        { "name": "CK",   "wave": "P.......",                                              "period": 2  },
-        { "name": "CMD",  "wave": "x.3x=x4x=x=x=x=x", "data": "RAS NOP CAS NOP NOP NOP NOP", "phase": 0.5 },
-        { "name": "ADDR", "wave": "x.=x..=x........", "data": "ROW COL",                     "phase": 0.5 },
-        { "name": "DQS",  "wave": "z.......0.1010z." },
-        { "name": "DQ",   "wave": "z.........5555z.", "data": "D0 D1 D2 D3" }
-        ]}""")
-        svg.saveas("output.svg")
-        self.display_svg("output.svg")
+        f = json.loads(file_path)
+        print(f)
+        print(f['signal'])
+
+        #svg = wavedrom.render("""
+        #    %s
+        #]}""" %())
+        #svg.saveas("output.svg")
+        #self.display_svg("output.svg")
 
     def show(self):
         display(self.__grid)
