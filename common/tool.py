@@ -110,8 +110,18 @@ class Colab():
             file_path += ".svg" 
         display(SVG('/content/'+file_path))
     
-    def display_html(self, file_path, width=700, height=600):
-        display(IFrame(src=file_path, width=width, height=height))
+    def display_wavedrowm(self, file_path):
+        import wavedrom
+        svg = wavedrom.render("""
+        { "signal": [
+        { "name": "CK",   "wave": "P.......",                                              "period": 2  },
+        { "name": "CMD",  "wave": "x.3x=x4x=x=x=x=x", "data": "RAS NOP CAS NOP NOP NOP NOP", "phase": 0.5 },
+        { "name": "ADDR", "wave": "x.=x..=x........", "data": "ROW COL",                     "phase": 0.5 },
+        { "name": "DQS",  "wave": "z.......0.1010z." },
+        { "name": "DQ",   "wave": "z.........5555z.", "data": "D0 D1 D2 D3" }
+        ]}""")
+        svg.saveas("output.svg")
+        self.display_svg("output.svg")
 
     def show(self):
         display(self.__grid)

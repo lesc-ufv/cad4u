@@ -84,12 +84,12 @@ class VERILOGPlugin(Magics):
         colab = tool.Colab()
 
         colab.install(["iverilog", "python3-cairosvg", "yosys"])
-        colab.install_pip(["vcdvcd", "git+https://github.com/Toroid-io/vcd2wavedrom.git"])
+        colab.install_pip(["vcdvcd", "git+https://github.com/Toroid-io/vcd2wavedrom.git", "wavedrom"])
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.execute("code.out")
 
         from vcd2wavedrom import vcd2wavedrom 
         vcd2wavedrom.main(['-i', '/content/dump.vcd', '-o', '/content/dump.json'])
 
-        colab.display_html("/content/cad4u/verilog/index.html")
+        colab.display_wavedrowm('/content/dump.json')
         
