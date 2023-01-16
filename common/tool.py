@@ -111,7 +111,7 @@ class Colab():
         display(SVG('/content/'+file_path))
     
     def display_html(self, file_path, width=700, height=600):
-        IFrame(src=file_path, width=width, height=height)
+        display(IFrame(src=file_path, width=width, height=height))
 
     def show(self):
         display(self.__grid)
