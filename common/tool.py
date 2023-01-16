@@ -113,15 +113,19 @@ class Colab():
     
     def display_wavedrowm(self, file_path):
         import wavedrom
-        f = json.loads(file_path)
-        print(f)
-        print(f['signal'])
-
-        #svg = wavedrom.render("""
-        #    %s
-        #]}""" %())
-        #svg.saveas("output.svg")
-        #self.display_svg("output.svg")
+        
+        f = open("/content/dump.json", "r")
+        r = []
+        for l in f.readlines():
+            r.append(l.strip())
+        f.close()
+        r = r[:len(r)-4]
+        s = ""
+        for l in r:
+            s += l + "\n"
+        svg = wavedrom.render("""%s}""" %(s))
+        svg.saveas("output.svg")
+        self.display_svg("output.svg")
 
     def show(self):
         display(self.__grid)
