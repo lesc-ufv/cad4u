@@ -1,7 +1,6 @@
 import subprocess
 import argparse
 import os
-import wavedrom
 import json
 
 from IPython.display import display, Image, SVG, IFrame
@@ -113,6 +112,7 @@ class Colab():
         display(SVG('/content/'+file_path))
     
     def display_wavedrowm(self, file_path):
+        import wavedrom
         f = json.loads(file_path)
         print(f)
         print(f['signal'])
