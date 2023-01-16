@@ -1,6 +1,5 @@
 from IPython.core.magic import Magics, cell_magic, magics_class
 from common import tool
-from common import colab
 
 from IPython.display import display, HTML
 
