@@ -115,16 +115,16 @@ class Colab():
         import wavedrom
         
         f = open("/content/dump.json", "r")
-        r = []
-        for l in f.readlines():
-            r.append(l.strip())
-        f.close()
-        r = r[:len(r)-4]
         s = ""
-        for l in r:
-            s += l + "\n"
-        svg = wavedrom.render("""%s}""" %(s))
-        svg.saveas("output.svg")
+        for l in f.readlines():
+            s += l.strip()
+        f.close()
+        #r = r[:len(r)-4]
+        #s = ""
+        #for l in r:
+        #    s += l + "\n"
+        svg = wavedrom.render("""%s""" %(s))
+        svg.saveas("output.png")
         self.display_svg("output.svg")
 
     def show(self):

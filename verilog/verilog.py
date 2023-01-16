@@ -93,3 +93,4 @@ class VERILOGPlugin(Magics):
 
         colab.display_wavedrowm('/content/dump.json')
         
+        
