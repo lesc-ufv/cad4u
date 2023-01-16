@@ -119,10 +119,7 @@ class Colab():
         for l in f.readlines():
             s += l.strip()
         f.close()
-        #r = r[:len(r)-4]
-        #s = ""
-        #for l in r:
-        #    s += l + "\n"
+        
         svg = wavedrom.render("""%s""" %(s))
         svg.saveas("/content/output.svg")
         self.display_svg("output.svg")
