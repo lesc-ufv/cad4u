@@ -125,7 +125,7 @@ class Colab():
         #    s += l + "\n"
         svg = wavedrom.render("""%s""" %(s))
         svg.saveas("output.png")
-        self.display_svg("output.svg")
+        self.display_png("output.svg")
 
     def show(self):
         display(self.__grid)
