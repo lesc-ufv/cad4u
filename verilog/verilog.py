@@ -1,5 +1,8 @@
 from IPython.core.magic import Magics, cell_magic, magics_class
 from common import tool
+from common import colab
+
+from IPython.display import display, HTML
 
 @magics_class
 class VERILOGPlugin(Magics):
@@ -75,3 +78,19 @@ class VERILOGPlugin(Magics):
             
         vcd_plt = VcdPlotter('/content/%s'%name)
         vcd_plt.show(op_dict, sign_list, time_begin[0], time_end[0], base[0])
+
+    @cell_magic
+    def wavedrom(self, line, cell):
+        
+        colab = tool.Colab()
+
+        colab.install(["iverilog", "python3-cairosvg", "yosys"])
+        colab.install_pip(["vcdvcd", "git+https://github.com/Toroid-io/vcd2wavedrom.git"])
+        colab.compile("iverilog", cell, "code.v", "code.out", line.split())
+        colab.execute("code.out")
+
+        from vcd2wavedrom import vcd2wavedrom 
+        vcd2wavedrom.main(['-i', '/content/dump.vcd', '-o', '/content/dump.json'])
+
+        colab.display_html("/content/cad4u/verilog/index.html")
+        

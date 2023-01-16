@@ -2,7 +2,7 @@ import subprocess
 import argparse
 import os
 
-from IPython.display import display, Image, SVG
+from IPython.display import display, Image, SVG, IFrame
 from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 
@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from ipywidgets import *
 
 already_install = False
+already_install_pip = False
 
 class Colab():
 
@@ -33,6 +34,20 @@ class Colab():
             output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
             try:
                 output = subprocess.check_output(["apt", "install"] + list, stderr=subprocess.STDOUT) 
+                output = output.decode('utf8')
+                print("done!")
+            except subprocess.CalledProcessError as e:
+                self.print_out(e.output.decode("utf8"))
+                print("failed!")
+    
+    def install_pip(self, list):
+        global already_install_pip
+        if not already_install_pip:
+            already_install_pip = True
+            print("Installing pip dependecies. Please wait... ", end="")
+            output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
+            try:
+                output = subprocess.check_output(["pip3", "install"] + list, stderr=subprocess.STDOUT) 
                 output = output.decode('utf8')
                 print("done!")
             except subprocess.CalledProcessError as e:
@@ -95,6 +110,9 @@ class Colab():
             file_path += ".svg" 
         display(SVG('/content/'+file_path))
     
+    def display_html(self, file_path, width=700, height=600):
+        IFrame(src=file_path, width=width, height=height)
+
     def show(self):
         display(self.__grid)
     
