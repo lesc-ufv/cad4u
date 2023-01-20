@@ -114,7 +114,7 @@ class Colab():
     def display_wavedrowm(self, file_path):
         import wavedrom
         
-        f = open("/content/dump.json", "r")
+        f = open(file_path, "r")
         s = ""
         for l in f.readlines():
             s += l.strip()
