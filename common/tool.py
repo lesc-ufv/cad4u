@@ -181,8 +181,6 @@ class Colab():
     def exec(self, program, input, flag):
         self.__program = program 
         self.__input = input
-        if not flag:
-            flag = "--D1="
         self.__flag = flag
         btn = Button(description="Start execution", button_style="success", layout=Layout(height='auto', width='auto'))
         btn.name = "__exec__"
