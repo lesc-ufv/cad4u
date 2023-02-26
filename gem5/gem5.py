@@ -89,7 +89,6 @@ class Gem5Plugin(Magics):
                     from cad4u.gem5.examples.simple import simple_gem5
                     simple_gem5(data)
                 arguments = ["sh", "/content/cad4u/gem5/execute.sh", data['arch'], '/content/gem5_code.py']
-                print(arguments)
                 self.execution(arguments)
                 self.output_gem5(data)
                 #except:
