@@ -14,16 +14,22 @@ def simple_gem5(data):
 	s += "system.clk_domain.clock = '%.1fGHz'\n" %(data['clk'])
 	s += "system.clk_domain.voltage_domain = VoltageDomain()\n"
 
+	arch = "X86"
+	if data["arch"] == "RISCV":
+		arch = "Riscv"
+	elif data["arch"] == "ARM":
+		arch = "Arm"
+
 	# Create a simple CPU
 	if data['cpu'] == 'Simple':
-		s += "system.cpu = %sTimingSimpleCPU()\n" %(data["arch"])
+		s += "system.cpu = %sTimingSimpleCPU()\n" %(arch)
 		s += "system.mem_mode = 'timing'\n" 
 	elif data['cpu'] == 'Out Order':
-		s += "system.cpu = %sDerivO3CPU()\n" %(data["arch"])
+		s += "system.cpu = %sDerivO3CPU()\n" %(arch)
 		s += "system.mem_mode = 'timing'\n"
 		s += "system.cpu.createThreads()\n"
 	elif data['cpu'] == 'In Order':
-		s += "system.cpu = %sAtomicSimpleCPU()\n" %(data["arch"])
+		s += "system.cpu = %sAtomicSimpleCPU()\n" %(arch)
 		s += "system.mem_mode = 'atomic'\n"
 		s += "system.cpu.createThreads()\n" 
 	
