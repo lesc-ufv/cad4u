@@ -20,7 +20,7 @@ def cache_gem5(data):
     s += "(opts, args) = SimpleOpts.parse_args()\n"
 
     # get ISA for the default binary to run. This is mostly for simple testing
-    s += "isa = str(m5.defines.buildEnv['TARGET_ISA']).lower()\n"
+    #s += "isa = str(m5.defines.buildEnv['TARGET_ISA']).lower()\n"
 
     # Default to running 'hello', use the compiled ISA to find the binary
     # grab the specific path to the binary
@@ -34,16 +34,22 @@ def cache_gem5(data):
     s += "system.clk_domain.clock = '%.1fGHz'\n" %(data['clk'])
     s += "system.clk_domain.voltage_domain = VoltageDomain()\n"
 
+    arch = "X86"
+    if data["arch"] == "RISCV":
+        arch = "Riscv"
+    elif data["arch"] == "ARM":
+        arch = "Arm"
+
     # Create a simple CPU
     if data['cpu'] == 'Simple':
-        s += "system.cpu = TimingSimpleCPU()\n"
+        s += "system.cpu = %sTimingSimpleCPU()\n" %(arch)
         s += "system.mem_mode = 'timing'\n" 
     elif data['cpu'] == 'Out Order':
-        s += "system.cpu = DerivO3CPU()\n"
+        s += "system.cpu = %sDerivO3CPU()\n" %(arch)
         s += "system.mem_mode = 'timing'\n"
         s += "system.cpu.createThreads()\n"
     elif data['cpu'] == 'In Order':
-        s += "system.cpu = AtomicSimpleCPU()\n"
+        s += "system.cpu = %sAtomicSimpleCPU()\n" %(arch)
         s += "system.mem_mode = 'atomic'\n"
         s += "system.cpu.createThreads()\n" 
     
@@ -79,10 +85,10 @@ def cache_gem5(data):
 
     # For x86 only, make sure the interrupts are connected to the memory
     # Note: these are directly connected to the memory bus and are not cached
-    s += "if m5.defines.buildEnv['TARGET_ISA'] == \"x86\":\n"
-    s += "    system.cpu.interrupts[0].pio = system.membus.mem_side_ports\n"
-    s += "    system.cpu.interrupts[0].int_requestor = system.membus.cpu_side_ports\n"
-    s += "    system.cpu.interrupts[0].int_responder = system.membus.mem_side_ports\n"
+    if data["arch"] == "X86":
+        s += "system.cpu.interrupts[0].pio = system.membus.mem_side_ports\n"
+        s += "system.cpu.interrupts[0].int_requestor = system.membus.cpu_side_ports\n"
+        s += "system.cpu.interrupts[0].int_responder = system.membus.mem_side_ports\n"
 
     # Connect the system up to the membus
     s += "system.system_port = system.membus.cpu_side_ports\n"
@@ -98,6 +104,9 @@ def cache_gem5(data):
     # Set the command
     # cmd is a list which begins with the executable (like argv)
     s += "process.cmd = [binary]\n"
+
+    s += "system.workload = SEWorkload.init_compatible(binary)\n"
+
     # Set the cpu to use the process as its workload and create thread contexts
     s += "system.cpu.workload = process\n"
     s += "system.cpu.createThreads()\n"

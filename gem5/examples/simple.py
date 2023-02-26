@@ -68,7 +68,7 @@ def simple_gem5(data):
 	# grab the specific path to the binary
 	s += "binary = os.path.join('%s')\n" %data['binary']
 
-	s+= "system.workload = SEWorkload.init_compatible(binary)\n"
+	s += "system.workload = SEWorkload.init_compatible(binary)\n"
 
 	# Create a process for a simple "Hello World" application
 	s += "process = Process()\n"
