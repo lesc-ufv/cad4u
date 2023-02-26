@@ -16,14 +16,14 @@ def simple_gem5(data):
 
 	# Create a simple CPU
 	if data['cpu'] == 'Simple':
-		s += "system.cpu = TimingSimpleCPU()\n"
+		s += "system.cpu = %sTimingSimpleCPU()\n" %(data["arch"])
 		s += "system.mem_mode = 'timing'\n" 
 	elif data['cpu'] == 'Out Order':
-		s += "system.cpu = DerivO3CPU()\n"
+		s += "system.cpu = %sDerivO3CPU()\n" %(data["arch"])
 		s += "system.mem_mode = 'timing'\n"
 		s += "system.cpu.createThreads()\n"
 	elif data['cpu'] == 'In Order':
-		s += "system.cpu = AtomicSimpleCPU()\n"
+		s += "system.cpu = %sAtomicSimpleCPU()\n" %(data["arch"])
 		s += "system.mem_mode = 'atomic'\n"
 		s += "system.cpu.createThreads()\n" 
 	
@@ -41,10 +41,10 @@ def simple_gem5(data):
 
 	# For x86 only, make sure the interrupts are connected to the memory
 	# Note: these are directly connected to the memory bus and are not cached
-	s += "if m5.defines.buildEnv['TARGET_ISA'] == \"x86\":\n"
-	s += "    system.cpu.interrupts[0].pio = system.membus.mem_side_ports\n"
-	s += "    system.cpu.interrupts[0].int_requestor = system.membus.cpu_side_ports\n"
-	s += "    system.cpu.interrupts[0].int_responder = system.membus.mem_side_ports\n"
+	if data["arch"] == "X86":
+		s += "system.cpu.interrupts[0].pio = system.membus.mem_side_ports\n"
+		s += "system.cpu.interrupts[0].int_requestor = system.membus.cpu_side_ports\n"
+		s += "system.cpu.interrupts[0].int_responder = system.membus.mem_side_ports\n"
 
 	# Create a DDR3 memory controller and connect it to the membus
 	s += "system.mem_ctrl = MemCtrl()\n"
@@ -56,11 +56,13 @@ def simple_gem5(data):
 	s += "system.system_port = system.membus.cpu_side_ports\n"
 
 	# get ISA for the binary to run.
-	s += "isa = str(m5.defines.buildEnv['TARGET_ISA']).lower()\n"
+	#s += "isa = str(m5.defines.buildEnv['TARGET_ISA']).lower()\n"
 
 	# Default to running 'hello', use the compiled ISA to find the binary
 	# grab the specific path to the binary
 	s += "binary = os.path.join('%s')\n" %data['binary']
+
+	s+= "system.workload = SEWorkload.init_compatible(binary)\n"
 
 	# Create a process for a simple "Hello World" application
 	s += "process = Process()\n"
@@ -72,7 +74,7 @@ def simple_gem5(data):
 	s += "system.cpu.createThreads()\n"
 
 	# set up the root SimObject and start the simulation
-	s += "root = Root(full_system = False, system = system)\n"
+	s += "root = Root(full_system = False, system=system)\n"
 	# instantiate all of the objects we've created above
 	s += "m5.instantiate()\n"
 
