@@ -25,7 +25,7 @@ class VERILOGPlugin(Magics):
         if "-top" not in line: 
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
         else:
-            args = '/content/cad4u/verilog/yosys_command.sh ' + line.replace("-top ", "") + ' code.v'
+            args = '/content/cad4u/verilog/yosys_command.sh ' + line + ' code.v'
         
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.command_line(args)
