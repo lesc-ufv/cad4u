@@ -28,4 +28,4 @@ Bibtex:
 
 # Video:
 
-[EduComp2023](https://youtu.be/T9K0eep3JWQ) - Ideias para uso do Google Colab no Ensino de Computação
+[EduComp2023](https://youtu.be/T9K0eep3JWQ) - Ideas for using Google Colab in Computer Education [Portuguese]
