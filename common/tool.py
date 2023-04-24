@@ -33,7 +33,7 @@ class Colab():
         for l in list:
             if l not in already_install:
                 already_install.append(l)
-                if count > 0:
+                if count == 0:
                     print("Installing. Please wait... ", end="")
                 output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
                 try:
@@ -52,7 +52,7 @@ class Colab():
         for l in list:
             if l not in already_install_pip:
                 already_install_pip.append(l)
-                if count > 0:
+                if count == 0:
                     print("Installing pip dependecies. Please wait... ", end="")
                 try:
                     output = subprocess.check_output(["pip3", "install", l], stderr=subprocess.STDOUT) 
