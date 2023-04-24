@@ -10,8 +10,8 @@ from IPython.core.magic_arguments import argument, magic_arguments, parse_argstr
 import matplotlib.pyplot as plt 
 from ipywidgets import *
 
-already_install = False
-already_install_pip = False
+already_install = []
+already_install_pip = []
 
 class Colab():
 
@@ -29,31 +29,32 @@ class Colab():
 
     def install(self, list):
         global already_install
-        if not already_install:
-            already_install = True
-            print("Installing. Please wait... ", end="")
-            output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
-            try:
-                output = subprocess.check_output(["apt", "install"] + list, stderr=subprocess.STDOUT) 
-                output = output.decode('utf8')
-                print("done!")
-            except subprocess.CalledProcessError as e:
-                self.print_out(e.output.decode("utf8"))
-                print("failed!")
+        for l in list:
+            if l not in already_install:
+                already_install.append(l)
+                print("Installing. Please wait... ", end="")
+                output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
+                try:
+                    output = subprocess.check_output(["apt", "install", l], stderr=subprocess.STDOUT) 
+                    output = output.decode('utf8')
+                    print("done!")
+                except subprocess.CalledProcessError as e:
+                    self.print_out(e.output.decode("utf8"))
+                    print("failed!")
     
     def install_pip(self, list):
         global already_install_pip
-        if not already_install_pip:
-            already_install_pip = True
-            print("Installing pip dependecies. Please wait... ", end="")
-            output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
-            try:
-                output = subprocess.check_output(["pip3", "install"] + list, stderr=subprocess.STDOUT) 
-                output = output.decode('utf8')
-                print("done!")
-            except subprocess.CalledProcessError as e:
-                self.print_out(e.output.decode("utf8"))
-                print("failed!")
+        for l in list:
+            if l not in already_install_pip:
+                already_install_pip.append(l)
+                print("Installing pip dependecies. Please wait... ", end="")
+                try:
+                    output = subprocess.check_output(["pip3", "install", l], stderr=subprocess.STDOUT) 
+                    output = output.decode('utf8')
+                    print("done!")
+                except subprocess.CalledProcessError as e:
+                    self.print_out(e.output.decode("utf8"))
+                    print("failed!")
     
     def compile(self, compiler, cell, file_path, file_output, flags=[]):
 
