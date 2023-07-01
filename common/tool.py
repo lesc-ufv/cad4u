@@ -64,7 +64,7 @@ class Colab():
         if count > 0:
             print("done!")
     
-    def compile(self, compiler, cell, file_path, file_output, flags=[]):
+    def compile(self, compiler, cell, file_path, file_output="code.out", flags=[]):
 
         args = [compiler, file_path, "-o", file_output]
 
@@ -73,6 +73,9 @@ class Colab():
             if flag == "<":
                 break
             args.append(flag)
+        
+        if '-v' in flags or '--version' in flags:
+            self.run_version(compiler)
 
         with open("/content/"+file_path, "w") as f:
             f.write(cell)
@@ -82,7 +85,10 @@ class Colab():
         except subprocess.CalledProcessError as e:
             self.print_out(e.output.decode("utf8"))
     
-    def execute(self, file_path, print_output=True):
+    def run_version(self, compiler):
+        self.command_line("%s --version" %(compiler), True)
+    
+    def execute(self, file_path="code.out", print_output=True):
 
         args = ["/content/"+file_path]
 
