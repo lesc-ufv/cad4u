@@ -1,7 +1,4 @@
-import subprocess
-import argparse
-import os
-import json
+import subprocess, argparse, os, json, sys
 
 from IPython.display import display, Image, SVG, IFrame
 from IPython.core.magic import Magics, cell_magic, magics_class
@@ -85,7 +82,7 @@ class Colab():
         except subprocess.CalledProcessError as e:
             print("The process occurred error, see below the error:\n")
             self.print_out(e.output.decode("utf8"))
-            exit()
+            sys.exit()
     
     def run_version(self, compiler):
         self.command_line("%s --version" %(compiler), True)
