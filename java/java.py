@@ -1,3 +1,4 @@
+'''
 import os
 import subprocess
 import tempfile
@@ -67,3 +68,19 @@ class JavaPlugin(Magics):
             self.run_java(file_path)
         except subprocess.CalledProcessError as e:
             helper.print_out(e.output.decode("utf8"))
+'''
+
+from IPython.core.magic import Magics, cell_magic, magics_class
+from common import tool
+
+@magics_class
+class JavaPlugin(Magics):
+    
+    def __init__(self, shell):
+        super(JavaPlugin, self).__init__(shell)
+    
+    @cell_magic
+    def java(self, line, cell):
+        colab = tool.Colab()
+        colab.compile("javac", cell, "code.java", flags=line.split())
+        colab.execute()
