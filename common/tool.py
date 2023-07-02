@@ -88,10 +88,8 @@ class Colab():
         self.command_line("%s --version" %(compiler), True)
     
     def execute(self, file_path="code.out", print_output=True):
-
-        args = ["/content/"+file_path]
-
         try:
+            args = ["/content/"+file_path]
             output = subprocess.check_output(args, stderr=subprocess.STDOUT).decode('utf8')
             self.print_out(output)
         except subprocess.CalledProcessError as e:
