@@ -90,4 +90,4 @@ class JavaPlugin(Magics):
 
         colab = tool.Colab()
         colab.compile("javac", cell, name_file+".java", flags=line.split(), no_output=True)
-        colab.execute("java", name_file)
+        colab.command_line("java "+name_file)
