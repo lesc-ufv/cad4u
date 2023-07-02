@@ -127,6 +127,10 @@ class Colab():
         display(SVG('/content/'+file_path))
     
     def display_wavedrowm(self, file_path):
+
+        from vcd2wavedrom import vcd2wavedrom 
+        vcd2wavedrom.main(['-i', '/content/dump.vcd', '-o', '/content/dump.json'])
+
         import wavedrom
         
         f = open(file_path, "r")
