@@ -129,11 +129,11 @@ class Colab():
     def display_wavedrowm(self, file_path):
 
         from vcd2wavedrom import vcd2wavedrom 
-        vcd2wavedrom.main(['-i', '/content/dump.vcd', '-o', '/content/dump.json'])
+        vcd2wavedrom.main(['-i', '/content/'+file_path+'.vcd', '-o', '/content/'+file_path+'.json'])
 
         import wavedrom
         
-        f = open(file_path, "r")
+        f = open(file_path+'.json', "r")
         s = ""
         for l in f.readlines():
             s += l.strip()
