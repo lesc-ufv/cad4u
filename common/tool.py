@@ -61,9 +61,12 @@ class Colab():
         if count > 0:
             print("done!")
     
-    def compile(self, compiler, cell, file_path, file_output="code.out", flags=[]):
+    def compile(self, compiler, cell, file_path, file_output="code.out", flags=[], no_output=False):
 
-        args = [compiler, file_path, "-o", file_output]
+        if no_output:
+            args = [compiler, file_path]
+        else:
+            args = [compiler, file_path, "-o", file_output]
 
         # adding flags: -O3, -unroll-loops, ...
         for flag in flags:

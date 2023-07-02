@@ -78,9 +78,16 @@ class JavaPlugin(Magics):
     
     def __init__(self, shell):
         super(JavaPlugin, self).__init__(shell)
-    
+
     @cell_magic
     def java(self, line, cell):
+
+        name_file = "Main"
+        for l in cell.split("\n"):
+            if l and "public class " in l:
+                name_file = l.replace("public class ","").replace("{","").replace(" ","")
+                break
+
         colab = tool.Colab()
-        colab.compile("javac", cell, "code.java", flags=line.split())
-        colab.execute()
+        colab.compile("javac", cell, name_file+".java", flags=line.split(), no_output=True)
+        colab.execute("java", name_file)
