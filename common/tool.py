@@ -71,18 +71,19 @@ class Colab():
                 break
             args.append(flag)
         
-        if '-v' in flags or '--version' in flags:
-            self.run_version(compiler)
-
-        with open("/content/"+file_path, "w") as f:
-            f.write(cell)
         try:
+            if '-v' in flags or '--version' in flags:
+                self.run_version(compiler)
+
+            with open("/content/"+file_path, "w") as f:
+                f.write(cell)
+        
             out = subprocess.check_output(args, stderr=subprocess.STDOUT)
             out = out.decode('utf8') 
         except subprocess.CalledProcessError as e:
             print("The process occurred error, see below the error:\n")
             self.print_out(e.output.decode("utf8"))
-            sys.exit()
+            sys.exit(1)
     
     def run_version(self, compiler):
         self.command_line("%s --version" %(compiler), True)
