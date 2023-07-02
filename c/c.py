@@ -9,7 +9,6 @@ class CPlugin(Magics):
     
     @cell_magic
     def gcc(self, line, cell):
-
         colab = tool.Colab()
         colab.install(["gcc"])
         colab.compile("gcc", cell, "code.c", flags=line.split())
