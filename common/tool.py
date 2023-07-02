@@ -83,8 +83,9 @@ class Colab():
             out = subprocess.check_output(args, stderr=subprocess.STDOUT)
             out = out.decode('utf8') 
         except subprocess.CalledProcessError as e:
+            print("The process occurred error, see below the error:\n")
             self.print_out(e.output.decode("utf8"))
-            exit(0)
+            exit()
     
     def run_version(self, compiler):
         self.command_line("%s --version" %(compiler), True)
