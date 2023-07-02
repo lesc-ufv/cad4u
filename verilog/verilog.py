@@ -87,6 +87,10 @@ class VERILOGPlugin(Magics):
         colab.install_pip(["vcdvcd", "git+https://github.com/Toroid-io/vcd2wavedrom.git", "wavedrom"])
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.execute("code.out")
-        colab.display_wavedrowm('dump.vcd')
+
+        from vcd2wavedrom import vcd2wavedrom 
+        vcd2wavedrom.main(['-i', '/content/dump.vcd', '-o', '/content/dump.json'])
+
+        colab.display_wavedrowm('/content/dump.json')
         
         
