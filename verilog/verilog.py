@@ -23,18 +23,20 @@ class VERILOGPlugin(Magics):
 
         parser = argparse.ArgumentParser(prog='print_verilog',description='Print verilog')
         parser.add_argument('--filename', '-f', default="code.v")
-        arg = parser.parse_args()
+        file = parser.parse_args()
+
+        print(file, file.filename)
 
         if "-top" not in line: 
-            colab.command_line("echo 'read_verilog /content/"+arg.filename+"' > /content/script.ys")
+            colab.command_line("echo 'read_verilog /content/"+file.filename+"' > /content/script.ys")
             colab.command_line("echo 'prep -flatten' >> /content/script.ys")
             colab.command_line("echo 'write_json output.json' >> /content/script.ys")
             args = "yosys -Q -T -q -s /content/script.ys"
         else:
-            args = '/content/cad4u/verilog/yosys_command.sh ' + line.replace("-top","").replace(" ","") + ' ' + arg.filename
+            args = '/content/cad4u/verilog/yosys_command.sh ' + line.replace("-top","").replace(" ","") + ' ' + file.filename
             print(args)
         
-        colab.compile("iverilog", cell, arg.filename, "code.out")
+        colab.compile("iverilog", cell, file.filename, "code.out")
         colab.command_line(args)
         colab.command_line('/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/verilog/netlistsvg/lib/default.svg')
         colab.display_svg('out.svg')
