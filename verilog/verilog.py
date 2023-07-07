@@ -21,11 +21,6 @@ class VERILOGPlugin(Magics):
         colab = tool.Colab()
         colab.install(["iverilog", "python3-cairosvg", "yosys"])
 
-        parser = argparse.ArgumentParser(prog='print_verilog',description='Print verilog')
-        parser.add_argument('--name', '-n', default="code.v")
-        file = parser.parse_args()
-
-        print(file.name)
         name = "code.v"
         data = line.split(" ")
         for i, l in enumerate(data):
