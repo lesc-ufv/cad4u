@@ -23,6 +23,19 @@ class Colab():
     def print_out(self, out: str):
         for l in out.split('\n'):
             print(l)
+    
+    def argument(self, list_args, string, default=None):
+        name = default
+        data = string.split(" ")
+        for i, l in enumerate(data):
+            for la in list_args:
+                if la in l:
+                    for j in (i+1, len(data)-1):
+                        if data[j] != '':
+                            name = string.split(" ")[i+1] 
+                            break
+                    break
+        return name
 
     def install(self, list):
         global already_install
