@@ -25,9 +25,10 @@ class VERILOGPlugin(Magics):
         data = line.split(" ")
         for i, l in enumerate(data):
             if "-n" in l or "--name" in l:
-                for j in (i+1, len(data)):
+                for j in (i+1, len(data)-1):
                     if data[j] != '':
                         name = line.split(" ")[i+1] 
+                        break
                 break
 
         if "-top" not in line: 
