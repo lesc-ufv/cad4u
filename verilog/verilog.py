@@ -27,6 +27,13 @@ class VERILOGPlugin(Magics):
 
         print(file.name)
         name = "code.v"
+        data = line.split(" ")
+        for i, l in enumerate(data):
+            if "-n" in l or "--name" in l:
+                for j in (i+1, len(data)):
+                    if data[j] != '':
+                        name = line.split(" ")[i+1] 
+                break
 
         if "-top" not in line: 
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
