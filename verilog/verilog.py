@@ -25,13 +25,15 @@ class VERILOGPlugin(Magics):
         parser.add_argument('--name', '-n', default="code.v")
         file = parser.parse_args()
 
+        print(file)
+
         if "-top" not in line: 
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
         else:
             args = '/content/cad4u/verilog/yosys_command.sh ' + line.replace("-top","").replace(" ","") + ' code.v'
             print(args)
         
-        colab.compile("iverilog", cell, args.filename, "code.out")
+        colab.compile("iverilog", cell, "code.v", "code.out")
         colab.command_line(args)
         colab.command_line('/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/verilog/netlistsvg/lib/default.svg')
         colab.display_svg('out.svg')
