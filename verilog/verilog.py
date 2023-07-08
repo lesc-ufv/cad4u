@@ -33,7 +33,7 @@ class VERILOGPlugin(Magics):
         colab.command_line(args)
         colab.command_line('/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/verilog/netlistsvg/lib/default.svg')
         colab.display_svg('out.svg')
-        if name != "code.v"
+        if name != "code.v":
             colab.command_line("mv /content/code.v " + "/content/"+name)
         
     @cell_magic
