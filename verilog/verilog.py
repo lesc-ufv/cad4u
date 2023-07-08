@@ -21,8 +21,9 @@ class VERILOGPlugin(Magics):
         colab = tool.Colab()
         colab.install(["iverilog", "python3-cairosvg", "yosys"])
         name = colab.argument(["-n", '--name'], line, default="code.v")
+        top = colab.argument(["-t", "-top"], line, default=None)
 
-        if "-top" not in line: 
+        if top: 
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
         else:
             args = '/content/cad4u/verilog/yosys_command.sh ' + line.replace("-top","").replace(" ","") + ' code.v'
@@ -32,7 +33,8 @@ class VERILOGPlugin(Magics):
         colab.command_line(args)
         colab.command_line('/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/verilog/netlistsvg/lib/default.svg')
         colab.display_svg('out.svg')
-        colab.command_line("mv /content/code.v " + "/content/"+name)
+        if name != "code.v"
+            colab.command_line("mv /content/code.v " + "/content/"+name)
         
     @cell_magic
     def waveform(self, line, cell):
