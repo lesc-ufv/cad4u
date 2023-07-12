@@ -12,8 +12,11 @@ class VERILOGPlugin(Magics):
     def verilog(self, line, cell):
         colab = tool.Colab()
         colab.install(["iverilog", "python3-cairosvg", "yosys"])
-        colab.compile("iverilog", cell, "code.v", "code.out", line.split())
+        name = colab.argument(["-n", '--name'], line, default="code.v")
+        colab.compile("iverilog", cell, "code.v", "code.out")
         colab.execute("code.out")
+        if name != "code.v":
+            colab.command_line("mv /content/code.v " + "/content/"+name)
        
     @cell_magic
     def print_verilog(self, line, cell):
