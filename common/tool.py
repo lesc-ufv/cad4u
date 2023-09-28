@@ -180,7 +180,7 @@ class Colab():
     
     def parse_out_valgrind(self, out, print_file=False):
         c = 0
-        print("Parameters: %d, %d, %d\n" %(1024*int(self.__grid_values["size"])), self.__grid_values["assoc"], self.__grid_values["lines"])
+        print("Parameters: %d, %d, %d\n" %(1024*self.__grid_values["size"], self.__grid_values["assoc"], self.__grid_values["lines"]))
         if print_file:
             f = open("/content/print_out.txt", "w")
         for l in out.split('\n'):
