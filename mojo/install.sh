@@ -8,4 +8,3 @@ modular install mojo
 
 echo 'export MODULAR_HOME="/root/.modular"' >> ~/.bashrc
 echo 'export PATH="/root/.modular/pkg/packages.modular.com_mojo/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
