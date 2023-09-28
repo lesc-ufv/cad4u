@@ -20,5 +20,5 @@ class MOJOPlugin(Magics):
         colab = tool.Colab()
         colab.install_script("mojo/install.sh", "mojo")
         colab.write_file(cell, "code.mojo")
-        colab.command_line(f'{compiler} build content/code.mojo')
+        colab.command_line(f'{compiler} build /content/code.mojo')
         colab.execute("code")
