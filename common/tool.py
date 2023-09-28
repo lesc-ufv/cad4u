@@ -74,6 +74,28 @@ class Colab():
         if count > 0:
             print("done!")
     
+    def install_script(self, path_script, nickname):
+        global already_install
+        count = 0
+        if nickname not in already_install:
+            already_install.append(nickname)
+            if count == 0:
+                print("Installing. Please wait... ", end="")
+            output = subprocess.check_output(["apt", "update"], stderr=subprocess.STDOUT) 
+            try:
+                self.command_line("sh /content/cad4u/" + path_script) 
+                output = output.decode('utf8')
+            except subprocess.CalledProcessError as e:
+                self.print_out(e.output.decode("utf8"))
+                print("failed!")
+            count += 1
+        if count > 0:
+            print("done!")
+
+    def write_file(self, cell, file_path):
+        with open("/content/"+file_path, "w") as f:
+            f.write(cell)
+
     def compile(self, compiler, cell, file_path, file_output="code.out", flags=[], no_output=False):
 
         if no_output:

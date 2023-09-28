@@ -7,6 +7,7 @@ from valgrind.valgrind import ValgrindPlugin as Valgrind
 from gem5.gem5 import Gem5Plugin as GEM5
 from llvm.llvm import llvmPlugin as LLVM
 from rust.rust import RUSTPlugin as Rust
+from mojo.mojo import MOJOPlugin as Mojo
 
 
 def load_ipython_extension(ip):
@@ -36,3 +37,6 @@ def load_ipython_extension(ip):
 
     rust_plugin = Rust(ip)
     ip.register_magics(rust_plugin)
+
+    mojo_plugin = Mojo(ip)
+    ip.register_magics(mojo_plugin)
