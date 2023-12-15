@@ -20,7 +20,7 @@ class CudaPlugin(Magics):
     @staticmethod
     def compile(file_path, flags):
 
-        args = [compiler,'-arch=sm_37', file_path + ext, "-o", file_path + ".out",'-Wno-deprecated-gpu-targets']
+        args = [compiler, file_path + ext, "-o", file_path + ".out",'-Wno-deprecated-gpu-targets']
 
         # adding flags: -O3, -unroll-loops, ...
         for flag in flags:
@@ -30,7 +30,7 @@ class CudaPlugin(Magics):
     
     @staticmethod
     def compile_ptx(file_path, flags):
-        arch = '37'
+        arch = '50'
         if (len(flags) > 0):
             arch = flags[0]
 
