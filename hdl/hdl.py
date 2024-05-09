@@ -21,11 +21,20 @@ class HDLPlugin(Magics):
     def vhdl(self, line, cell):
         colab = tool.Colab()
         colab.install(["ghdl", "python3-cairosvg", "yosys"])
-        name = colab.argument(["-n", '--name'], line, default="code.vhdl")
-        colab.compile("ghdl", cell, "code.vhdl", "code.out")
-        colab.execute("code.out")
-        if name != "code.vhdl":
-            colab.command_line("mv /content/code.vhdl " + "/content/"+name)
+
+        entity = None
+        for l in line.split("\n"):
+            if "entity" in l:
+                entity = l.strip().split(" ")[1]
+                break
+        
+        if not entity:
+            print("Not found entity")
+            return
+
+        colab.compile("ghdl -a", cell, "code.vhdl", no_output=True)
+        colab.command_line(f"ghdl -e {entity}")
+        colab.execute(entity)
        
     @cell_magic
     def print_verilog(self, line, cell):
