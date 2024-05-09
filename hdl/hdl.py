@@ -28,11 +28,14 @@ class HDLPlugin(Magics):
                 entity = l.strip().split(" ")[1]
                 break
         
+        print(entity)
         if entity == None:
             print("Not found entity")
             return
 
-        colab.compile("ghdl -a", cell, "code.vhdl", no_output=True)
+        with open("/content/code.vhdl", "w") as f:
+            f.write(cell)
+        colab.command_line("ghdl -a /content/code.vhdl")
         colab.command_line(f"ghdl -e {entity}")
         colab.execute(entity)
        
