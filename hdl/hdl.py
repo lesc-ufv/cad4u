@@ -24,7 +24,7 @@ class HDLPlugin(Magics):
 
         entity = None
         for l in cell.split("\n"):
-            if "entity" in l:
+            if "entity" in l and "is" in l:
                 entity = l.strip().split("entity")[1].split("is")[0]
                 break
         
