@@ -28,7 +28,7 @@ class HDLPlugin(Magics):
                 entity = l.strip().split(" ")[1]
                 break
         
-        if not entity:
+        if entity == None:
             print("Not found entity")
             return
 
