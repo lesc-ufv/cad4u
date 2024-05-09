@@ -23,7 +23,7 @@ class HDLPlugin(Magics):
         colab.install(["ghdl", "python3-cairosvg", "yosys"])
 
         entity = None
-        for l in line.split("\n"):
+        for l in cell.split("\n"):
             if "entity" in l:
                 entity = l.strip().split(" ")[1]
                 break
