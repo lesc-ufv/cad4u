@@ -36,8 +36,8 @@ class HDLPlugin(Magics):
         with open("/content/code.vhdl", "w") as f:
             f.write(cell)
         colab.command_line("ghdl -a /content/code.vhdl")
-        colab.command_line(f"ghdl -e {entity}")
-        colab.execute(entity)
+        colab.command_line(f"ghdl -e /content/{entity}")
+        colab.command_line(f"ghdl -r /content/{entity}")
        
     @cell_magic
     def print_verilog(self, line, cell):
