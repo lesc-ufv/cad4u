@@ -4,17 +4,16 @@ import tempfile
 import uuid
 
 from IPython.core.magic import Magics, cell_magic, magics_class
-from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
 
 compiler = '/usr/local/cuda/bin/nvcc'
 ext = '.cu'
  
 @magics_class
-class CudaPlugin(Magics):
+class GPUPlugin(Magics):
 
     def __init__(self, shell):
-        super(CudaPlugin, self).__init__(shell)
+        super(GPUPlugin, self).__init__(shell)
         self.argparser = helper.get_argparser()
 
     @staticmethod

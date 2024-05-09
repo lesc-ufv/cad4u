@@ -1,4 +1,4 @@
-from cuda.cuda import CudaPlugin as CUDA
+from gpu.gpu import GPUPlugin as GPU
 from c.c import CPlugin as C
 from cpp.cpp import CPPPlugin as CPP
 from java.java import JavaPlugin as JAVA
@@ -11,7 +11,7 @@ from mojo.mojo import MOJOPlugin as Mojo
 
 
 def load_ipython_extension(ip):
-    cuda_plugin = CUDA(ip)
+    cuda_plugin = GPU(ip)
     ip.register_magics(cuda_plugin)
 
     c_plugin = C(ip)
