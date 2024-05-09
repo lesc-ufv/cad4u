@@ -2,7 +2,7 @@ from gpu.gpu import GPUPlugin as GPU
 from c.c import CPlugin as C
 from cpp.cpp import CPPPlugin as CPP
 from java.java import JavaPlugin as JAVA
-from verilog.verilog import VERILOGPlugin as VERILOG
+from hdl.hdl import HDLPlugin as HDL
 from valgrind.valgrind import ValgrindPlugin as Valgrind
 from gem5.gem5 import Gem5Plugin as GEM5
 from llvm.llvm import llvmPlugin as LLVM
@@ -20,7 +20,7 @@ def load_ipython_extension(ip):
     cpp_plugin = CPP(ip)
     ip.register_magics(cpp_plugin)
 
-    verilog_plugin = VERILOG(ip)
+    verilog_plugin = HDL(ip)
     ip.register_magics(verilog_plugin)
 
     java_plugin = JAVA(ip)

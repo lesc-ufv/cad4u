@@ -1,12 +1,11 @@
 from IPython.core.magic import Magics, cell_magic, magics_class
 from common import tool
-import argparse
 
 @magics_class
-class VERILOGPlugin(Magics):
+class HDLPlugin(Magics):
     
     def __init__(self, shell):
-        super(VERILOGPlugin, self).__init__(shell)
+        super(HDLPlugin, self).__init__(shell)
 
     @cell_magic
     def verilog(self, line, cell):
@@ -17,6 +16,16 @@ class VERILOGPlugin(Magics):
         colab.execute("code.out")
         if name != "code.v":
             colab.command_line("mv /content/code.v " + "/content/"+name)
+    
+    @cell_magic
+    def vhdl(self, line, cell):
+        colab = tool.Colab()
+        colab.install(["ghdl", "python3-cairosvg", "yosys"])
+        name = colab.argument(["-n", '--name'], line, default="code.vhdl")
+        colab.compile("ghdl", cell, "code.vhdl", "code.out")
+        colab.execute("code.out")
+        if name != "code.vhdl":
+            colab.command_line("mv /content/code.vhdl " + "/content/"+name)
        
     @cell_magic
     def print_verilog(self, line, cell):
@@ -57,7 +66,7 @@ class VERILOGPlugin(Magics):
         
         import sys
         sys.path.insert(0,'.')
-        from cad4u.verilog.vcd_parser.vcd_plotter import VcdPlotter
+        from cad4u.hdl.vcd_parser.vcd_plotter import VcdPlotter
 
         op_dict = []
         sign_list = []
