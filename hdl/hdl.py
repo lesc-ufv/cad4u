@@ -28,7 +28,6 @@ class HDLPlugin(Magics):
                 entity = l.strip().split("entity")[1].split("is")[0].replace(" ", "")
                 break
         
-        print(entity)
         if entity == None:
             print("Not found entity")
             return
@@ -36,8 +35,8 @@ class HDLPlugin(Magics):
         with open("/content/code.vhdl", "w") as f:
             f.write(cell)
         colab.command_line("ghdl -a /content/code.vhdl")
-        colab.command_line(f"ghdl -e /content/{entity}")
-        colab.command_line(f"ghdl -r /content/{entity}")
+        colab.command_line(f"ghdl -e {entity}")
+        colab.command_line(f"ghdl -r {entity}")
        
     @cell_magic
     def print_verilog(self, line, cell):
