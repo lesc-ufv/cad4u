@@ -3,40 +3,18 @@ from c.c import CPlugin as C
 from cpp.cpp import CPPPlugin as CPP
 from java.java import JavaPlugin as JAVA
 from hdl.hdl import HDLPlugin as HDL
-from valgrind.valgrind import ValgrindPlugin as Valgrind
+from valgrind.valgrind import ValgrindPlugin as VALGRIND
 from gem5.gem5 import Gem5Plugin as GEM5
 from llvm.llvm import llvmPlugin as LLVM
-from rust.rust import RUSTPlugin as Rust
-from mojo.mojo import MOJOPlugin as Mojo
+from rust.rust import RUSTPlugin as RUST
+from mojo.mojo import MOJOPlugin as MOJO
+
+
+def register_plugin(ip, tool):
+    ip.register_magics(tool(ip))
 
 
 def load_ipython_extension(ip):
-    cuda_plugin = GPU(ip)
-    ip.register_magics(cuda_plugin)
-
-    c_plugin = C(ip)
-    ip.register_magics(c_plugin)
-
-    cpp_plugin = CPP(ip)
-    ip.register_magics(cpp_plugin)
-
-    verilog_plugin = HDL(ip)
-    ip.register_magics(verilog_plugin)
-
-    java_plugin = JAVA(ip)
-    ip.register_magics(java_plugin)
-
-    ValgrindPlugin = Valgrind(ip)
-    ip.register_magics(ValgrindPlugin)
-
-    gem5_plugin = GEM5(ip)
-    ip.register_magics(gem5_plugin)
-
-    llvm_plugin = LLVM(ip)
-    ip.register_magics(llvm_plugin)
-
-    rust_plugin = Rust(ip)
-    ip.register_magics(rust_plugin)
-
-    mojo_plugin = Mojo(ip)
-    ip.register_magics(mojo_plugin)
+    class_list = [GPU, C, CPP, JAVA, HDL, VALGRIND, GEM5, LLVM, RUST, MOJO]
+    for tool in class_list:
+        register_plugin(ip, tool)
