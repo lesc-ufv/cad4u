@@ -1,3 +1,8 @@
+import os
+
+# download git
+os.system("git clone https://github.com/lesc-ufv/cad4u")
+
 from common.generator_plugin import plugin
 from distutils.core import setup
 
