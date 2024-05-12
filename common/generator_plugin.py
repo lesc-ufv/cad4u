@@ -5,6 +5,6 @@ def plugin(class_list):
     f.write("\n\n")
     f.write("def load_ipython_extension(ip):\n")
     for tool in class_list:
-        f.write(f"\tip.register_magics({tool.upper()}(ip))")
+        f.write(f"\tip.register_magics({tool.upper()}(ip))\n")
     f.write("\n")
     f.close()
