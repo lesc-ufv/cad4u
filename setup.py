@@ -19,6 +19,7 @@ class_list = [
     "mojo",
 ]
 plugin(class_list)
+os.system("cp /content/cad4u/plugin.py /content/plugin.py")
 
 py_modules = []
 for tool in class_list:
