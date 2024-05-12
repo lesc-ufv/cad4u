@@ -1,5 +1,5 @@
 def plugin(class_list):
-    f = open("/content/plugin.py", "w")
+    f = open("/content/cad4u/plugin.py", "w")
     for tool in class_list:
         f.write(f"from {tool}.{tool} import Plugin as {tool.upper()}\n")
     f.write("\n\n")
