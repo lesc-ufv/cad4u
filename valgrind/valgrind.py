@@ -14,10 +14,10 @@ compiler = '/usr/bin/g++'
 ext = '.cpp'
 
 @magics_class
-class ValgrindPlugin(Magics):
+class Plugin(Magics):
     
     def __init__(self, shell):
-        super(ValgrindPlugin, self).__init__(shell)
+        super(Plugin, self).__init__(shell)
         self.argparser = helper.get_argparser()
         self.already_install = False
     

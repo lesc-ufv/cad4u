@@ -4,10 +4,10 @@ from common import tool
 compiler = "/root/.modular/pkg/packages.modular.com_mojo/bin/mojo"
 
 @magics_class
-class MOJOPlugin(Magics):
+class Plugin(Magics):
     
     def __init__(self, shell):
-        super(MOJOPlugin, self).__init__(shell)
+        super(Plugin, self).__init__(shell)
     
     def updateInstall(self):
         list_dependecies = ["mojo"]

@@ -2,10 +2,10 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 from common import tool
 
 @magics_class
-class CPPPlugin(Magics):
+class Plugin(Magics):
     
     def __init__(self, shell):
-        super(CPPPlugin, self).__init__(shell)
+        super(Plugin, self).__init__(shell)
     
     @cell_magic
     def cpp(self, line, cell):

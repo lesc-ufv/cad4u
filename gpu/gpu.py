@@ -10,10 +10,10 @@ compiler = '/usr/local/cuda/bin/nvcc'
 ext = '.cu'
  
 @magics_class
-class GPUPlugin(Magics):
+class Plugin(Magics):
 
     def __init__(self, shell):
-        super(GPUPlugin, self).__init__(shell)
+        super(Plugin, self).__init__(shell)
         self.argparser = helper.get_argparser()
 
     @staticmethod

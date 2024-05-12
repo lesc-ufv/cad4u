@@ -13,10 +13,10 @@ from common import helper
 ext = '.py'
 
 @magics_class
-class Gem5Plugin(Magics):
+class Plugin(Magics):
     
     def __init__(self, shell):
-        super(Gem5Plugin, self).__init__(shell)
+        super(Plugin, self).__init__(shell)
         self.argparser = helper.get_argparser()
         self.already_install = False
         #self.updateInstall()
