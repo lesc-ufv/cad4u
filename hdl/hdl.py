@@ -53,7 +53,7 @@ class Plugin(Magics):
         if top:
             args = "/content/cad4u/hdl/yosys_command.sh " + top + " code.v"
         else:
-            args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
+            args = "yosys -Q -T -q -s /content/cad4u/hdl/script.ys"
 
         colab.compile("iverilog", cell, "code.v", "code.out")
         colab.command_line(args)
