@@ -37,7 +37,9 @@ class Plugin(Magics):
             f.write(cell)
         colab.command_line("ghdl -a /content/code.vhdl")
         colab.command_line(f"ghdl -e {entity}")
-        colab.command_line(f"ghdl -r {entity} &> a.out")
+        print(f"ghdl -e {entity}")
+        colab.command_line(f"ghdl -r {entity} > a.out")
+        print(f"ghdl -r {entity} > a.out")
         colab.command_line("cat a.out")
 
     @cell_magic
