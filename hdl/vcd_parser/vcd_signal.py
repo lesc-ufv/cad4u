@@ -20,7 +20,12 @@ class Signal:
 
     def __repr__(self):
         return "Name: %s\nID: %s\nType: %s\nWidth: %s\nValues: %s\n" % (
-            self.name, self.id, self.type, self.width, self.values)
+            self.name,
+            self.id,
+            self.type,
+            self.width,
+            self.values,
+        )
 
 
 class SignalStore:
@@ -28,7 +33,7 @@ class SignalStore:
         self.signals = {}
         self.name_id_map = {}
         self.time_scale = 1
-        self.unit = 's'
+        self.unit = "s"
         self.max_time_stamp = 0
 
     def update_timescale(self, time_scale: int, unit: str):
