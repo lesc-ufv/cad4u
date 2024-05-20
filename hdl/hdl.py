@@ -51,14 +51,14 @@ class Plugin(Magics):
         top = colab.argument(["-t", "-top"], line, default=None)
 
         if top:
-            args = "/content/cad4u/verilog/yosys_command.sh " + top + " code.v"
+            args = "/content/cad4u/hdl/yosys_command.sh " + top + " code.v"
         else:
             args = "yosys -Q -T -q -s /content/cad4u/verilog/script.ys"
 
         colab.compile("iverilog", cell, "code.v", "code.out")
         colab.command_line(args)
         colab.command_line(
-            "/content/cad4u/verilog/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/verilog/netlistsvg/lib/default.svg"
+            "/content/cad4u/hdl/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/hdl/netlistsvg/lib/default.svg"
         )
         colab.display_svg("out.svg")
         if name != "code.v":
