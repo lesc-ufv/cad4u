@@ -248,6 +248,14 @@ class Colab():
         s += "," + str(self.__grid_values["assoc"])
         s += "," + str(self.__grid_values["lines"])
         self.__param_values = s
+    
+    def bash_script(self, name_file: str, info: str, append=True):
+        '''
+            create a bash script from the scratch
+        '''
+        f = open(name_file, "a" if append else "w")
+        f.write(info + "\n")
+        f.close()
 
 '''
     botao(ID,descricao,i,j) - botao com o texto descricao, o ID que será gravado 

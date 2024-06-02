@@ -37,10 +37,7 @@ class Plugin(Magics):
             f.write(cell)
         colab.command_line("ghdl -a /content/code.vhdl")
         colab.command_line(f"ghdl -e {entity}")
-        print(f"ghdl -e {entity}")
-        colab.command_line(f"ghdl -r {entity} > a.out")
-        print(f"ghdl -r {entity} > a.out")
-        colab.command_line("cat a.out")
+        colab.command_line(f"ghdl -r {entity}", print_output=True)
 
     @cell_magic
     def print_verilog(self, line, cell):
