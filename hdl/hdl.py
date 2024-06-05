@@ -119,3 +119,14 @@ class Plugin(Magics):
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.execute("code.out")
         colab.display_wavedrowm("dump")
+    
+    @cell_magic
+    def systemverilog(self, line, cell):
+        colab = tool.Colab()
+        colab.write_file(cell, "code.sv")
+        colab.command_line("/content/cad4u/hdl/verilator-5.024/bin/verilator --binary /content/code.sv")
+
+    @cell_magic
+    def systemc(self, line, cell):
+        # TODO
+        pass
