@@ -59,7 +59,7 @@ class Plugin(Magics):
         )
         colab.display_svg("out.svg")
         if name != "code.v":
-            colab.command_line("mv /content/code.v " + "/content/" + name)
+            colab.command_line(f"mv /content/code.v /content/{name}")
 
     @cell_magic
     def waveform(self, line, cell):
@@ -123,10 +123,10 @@ class Plugin(Magics):
     @cell_magic
     def systemverilog(self, line, cell):
         colab = tool.Colab()
-        colab.write_file(cell, "code.sv")
-        colab.command_line("/content/cad4u/hdl/verilator-5.024/bin/verilator --binary /content/code.sv")
+        colab.install(["python3-cairosvg", "yosys"])
 
-    @cell_magic
-    def systemc(self, line, cell):
-        # TODO
-        pass
+        args = colab.arguments("print", line, default=None)
+        colab.write_file(cell, "top.sv")
+        colab.command_line('yosys -p "read_verilog -sv /content/top.sv"', print_output=True)
+
+        print(args)
