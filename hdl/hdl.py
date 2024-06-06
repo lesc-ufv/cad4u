@@ -125,4 +125,15 @@ class Plugin(Magics):
         colab = tool.Colab()
         colab.install(["python3-cairosvg", "yosys"])
         colab.write_file(cell, "top.sv")
-        colab.command_line('yosys -p "read_verilog -sv /content/top.sv"', print_output=True)
+
+        is_print = "--print" in line
+        colab.bash_script(f"run_sv.sh", 'yosys -p "read_verilog -sv /content/top.sv; write_json output.json"', False)
+        colab.command_line("bash run_sv.sh")
+
+        if is_print:
+            colab.command_line(
+            "/content/cad4u/hdl/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/hdl/netlistsvg/lib/default.svg"
+            )
+            colab.display_svg("out.svg")
+
+
