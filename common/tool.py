@@ -26,6 +26,8 @@ class Colab:
             print(l)
 
     def print_custom(self, output: str, start: str, end: str) -> None:
+        if output == None: 
+            return
         is_out = False
         for out in output.split("\n"):
             if end in out:
