@@ -28,11 +28,11 @@ class Colab:
     def print_custom(self, output: str, start: str, end: str) -> None:
         is_out = False
         for out in output.split("\n"):
-            if end:
+            if end in out:
                 is_out = False
             if is_out:
                 print(out)
-            if start:
+            if start in out:
                 is_out = True
 
     def argument(self, list_args, string, default=None) -> str:
