@@ -127,8 +127,8 @@ class Plugin(Magics):
         colab.write_file(cell, "top.sv")
 
         is_print = "--print" in line
-        colab.bash_script(f"run_sv.sh", 'yosys -p "read_verilog -sv /content/top.sv; write_json output.json"', False)
-        colab.command_line("bash run_sv.sh")
+        colab.bash_script(f"run_sv.sh", 'yosys -p "read_verilog -sv /content/top.sv; prep -flatten; write_json output.json"', False)
+        colab.command_line("bash run_sv.sh", print_output=True)
 
         if is_print:
             colab.command_line(
