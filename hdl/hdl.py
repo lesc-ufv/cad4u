@@ -119,30 +119,27 @@ class Plugin(Magics):
         colab.compile("iverilog", cell, "code.v", "code.out", line.split())
         colab.execute("code.out")
         colab.display_wavedrowm("dump")
-    
+
     @cell_magic
     def systemverilog(self, line, cell):
         colab = tool.Colab()
         colab.install(["python3-cairosvg", "yosys"])
         colab.write_file(cell, "top.sv")
-        
-        colab.bash_script(f"run_sv.sh", 'yosys -p "read_verilog -sv /content/top.sv; prep -flatten; write_json output.json"', False)
+
+        colab.bash_script(
+            f"run_sv.sh",
+            'yosys -p "read_verilog -sv /content/top.sv; prep -flatten; write_json output.json"',
+            False,
+        )
         output = colab.command_line("bash run_sv.sh")
 
         if "--print" in line:
             colab.command_line(
-            "/content/cad4u/hdl/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/hdl/netlistsvg/lib/default.svg"
+                "/content/cad4u/hdl/netlistsvg/bin/netlistsvg.js output.json --skin /content/cad4u/hdl/netlistsvg/lib/default.svg"
             )
             colab.display_svg("out.svg")
         if "--stats" in line:
-            is_out = False
-            for out in output.split("\n"):
-                if "CHECK pass" in out:
-                    is_out = False
-                if is_out:
-                    print(out)
-                if "Printing statistics" in out:
-                    is_out = True
-
-        for out in output.split("\n"):
-            print(out)
+            colab.print_custom(output, "Printing statistics", "CHECK pass")
+        colab.print_custom(
+            output, "Generating RTLIL representation", "Successfully finished"
+        )
