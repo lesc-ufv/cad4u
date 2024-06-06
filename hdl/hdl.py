@@ -144,5 +144,5 @@ class Plugin(Magics):
                 if "Printing statistics" in out:
                     is_out = True
 
-        for out in output.split():
+        for out in output.split("\n"):
             print(out)
