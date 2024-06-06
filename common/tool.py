@@ -24,7 +24,7 @@ class Colab():
         for l in out.split('\n'):
             print(l)
     
-    def argument(self, list_args, string, default=None):
+    def argument(self, list_args, string, default=None) -> str:
         name = default
         data = string.split(" ")
         for i, l in enumerate(data):
@@ -36,6 +36,11 @@ class Colab():
                             break
                     break
         return name
+    
+    def arguments(self, args : str, line : str, text : str = "", type : str = str, required : bool = False, default = None):
+        parser = argparse.ArgumentParser(text)
+        parser.add_argument(f"--{args}", type=type, required=required, default=default)
+        return parser.parse_args()
 
     def install(self, list):
         global already_install
