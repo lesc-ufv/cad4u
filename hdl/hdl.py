@@ -124,9 +124,5 @@ class Plugin(Magics):
     def systemverilog(self, line, cell):
         colab = tool.Colab()
         colab.install(["python3-cairosvg", "yosys"])
-
-        args = colab.arguments("print", line, default=None)
         colab.write_file(cell, "top.sv")
         colab.command_line('yosys -p "read_verilog -sv /content/top.sv"', print_output=True)
-
-        print(args)
