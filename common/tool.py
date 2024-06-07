@@ -131,7 +131,7 @@ class Colab:
         # clean old code
         if os.path.isfile(filename):
             os.remove(filename)
-        with open(filename) as f:
+        with open(filename, mode = "w") as f:
             f.write(cell)
 
     def compile(
