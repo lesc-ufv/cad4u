@@ -127,7 +127,11 @@ class Colab:
             print("done!")
 
     def write_file(self, cell, file_path):
-        with open("/content/" + file_path, "w") as f:
+        file_path = f"/content/{file_path}"
+        # clean old code
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+        with open(file_path) as f:
             f.write(cell)
 
     def compile(

@@ -140,6 +140,16 @@ class Plugin(Magics):
             colab.display_svg("out.svg")
         if "--stats" in line:
             colab.print_custom(output, "Printing statistics", "CHECK pass")
+        
+        if "--wave" in line:
+            if "dump" not in cell:
+                print("Not found dump testbench! Not generated the wave!")
+            else:
+                colab.install_pip(
+                    ["vcdvcd", "git+https://github.com/Toroid-io/vcd2wavedrom.git", "wavedrom"]
+                )
+                colab.display_wavedrowm("dump")
+
         colab.print_custom(
             output, "Generating RTLIL representation", "Successfully finished"
         )
