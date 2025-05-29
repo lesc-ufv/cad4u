@@ -19,7 +19,7 @@ class Plugin(Magics):
     @staticmethod
     def compile(file_path, flags):
 
-        args = [compiler, file_path + ext, "-o", file_path + ".out",'-Wno-deprecated-gpu-targets']
+        args = [compiler, file_path + ext, "-o", file_path + ".out",'-arch=sm_75 -gencode=arch=compute_75,code=sm_75']
 
         # adding flags: -O3, -unroll-loops, ...
         for flag in flags:
