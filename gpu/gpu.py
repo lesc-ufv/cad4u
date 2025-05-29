@@ -20,7 +20,8 @@ class Plugin(Magics):
     def compile(file_path, flags):
 
         args = [compiler, file_path + ext, "-o", file_path + ".out"]
-        flags.append('-arch=sm_75 -gencode=arch=compute_75,code=sm_75')
+        flags.append('-arch=sm_75')
+        flags.append('-gencode=arch=compute_75,code=sm_75')
         
         # adding flags: -O3, -unroll-loops, ...
         for flag in flags:
